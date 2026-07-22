@@ -131,9 +131,9 @@ const SLOWAKIJE=[
 ];
 
 const COORDS_SP=[[51.155,4.475],[43.427,-2.783],[43.265,-4.950],[43.421,-4.756],[42.622,-0.111],[42.735,-0.009],[51.155,4.475]];
-const COORDS_SK=[[51.155,4.475],[49.545,6.367],[47.555,12.988],[47.744,13.386],[49.165,20.213],[48.375,15.598],[51.155,4.475]];
+const COORDS_SK=[[51.155,4.475],[49.545,6.367],[47.555,12.988],[47.744,13.386],[49.165,20.213],[48.375,15.598],[50.35,7.6],[51.155,4.475]];
 const LABELS_SP=['Hove','Baskenland','Picos','Llanes','Ordesa','Gavarnie','Hove'];
-const LABELS_SK=['Hove','Moezel','Berchtesgaden','Salzkammergut','Hoge Tatra','Wachau','Hove'];
+const LABELS_SK=['Hove','Moezel','Berchtesgaden','Salzkammergut','Hoge Tatra','Wachau','Rijnland','Hove'];
 
 const TIPS_SP='<li>Gebruik ABRP voor laadplanning</li><li>Noordkust Spanje is fris (18-24°C) — perfect!</li><li>Vroeg boeken: Picos & Ordesa accommodatie</li><li>Wandelschoenen mee (Ruta del Cares, Ordesa)</li><li>Flexibel blijven — weer in de bergen wisselt</li>';
 const TIPS_SK='<li>Gebruik ABRP voor laadplanning</li><li>350-400km range per dag is comfortabel</li><li>Vroeg boeken: Hoge Tatra accommodatie</li><li>Waterschoenen mee voor gorges (Slovenský Raj)</li><li>Flexibel blijven — weer in de bergen wisselt</li>';
@@ -185,12 +185,15 @@ function highlightLeg(){
   const ac=accent();
 
   // Highlight active segment
-  if(leg<c.length-1){
+  if(day.type==='drive'&&leg<c.length-1){
     var seg=L.polyline([c[leg],c[Math.min(leg+1,c.length-1)]],{color:ac,weight:5,opacity:1}).addTo(map);
     routeLines.push(seg);
-    // Pulse marker at the stop location
+    // Pulse marker at destination
     var pt=c[Math.min(leg+1,c.length-1)];
-    if(day.type==='drive'&&day.from){pt=c[Math.min(leg+1,c.length-1)]}
+    pulseMarker=L.circleMarker(pt,{radius:10,color:'#fff',fillColor:ac,fillOpacity:1,weight:3}).addTo(map);
+  } else {
+    // Non-drive: pulse at current location
+    var pt=c[Math.min(leg,c.length-1)];
     pulseMarker=L.circleMarker(pt,{radius:10,color:'#fff',fillColor:ac,fillOpacity:1,weight:3}).addTo(map);
   }
 
