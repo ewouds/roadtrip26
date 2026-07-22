@@ -76,7 +76,7 @@ footer a{color:var(--accent);text-decoration:none;transition:color .3s}
   <div class="toggle-track hot" id="toggle">
     <div class="toggle-thumb"></div>
   </div>
-  <span class="fab-label" id="fab-label">Te Heet!</span>
+  <span class="fab-label" id="fab-label">Too Hot!</span>
 </div>
 
 <div class="hero">
@@ -179,7 +179,7 @@ footer a{color:var(--accent);text-decoration:none;transition:color .3s}
     document.getElementById('stat-landen').textContent=r.landen;
     var t=document.getElementById('toggle');
     if(hot){t.classList.add('hot');t.setAttribute('aria-checked','true')}else{t.classList.remove('hot');t.setAttribute('aria-checked','false')}
-    document.getElementById('fab-label').textContent=hot?'Te Heet!':'Cool 🏔️';
+    document.getElementById('fab-label').textContent=hot?'Too Hot!':'Cool 🏔️';
     document.getElementById('fab-emoji').textContent=hot?'🔥':'❄️';
     document.getElementById('route-spanje').classList.toggle('active',hot);
     document.getElementById('route-slowakije').classList.toggle('active',!hot);
