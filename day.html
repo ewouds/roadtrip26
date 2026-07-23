@@ -202,12 +202,13 @@ var currentIdx=routeStops.indexOf(stopId);
 var navEl=document.getElementById('day-nav');
 var prevStop=currentIdx>0?routeStops[currentIdx-1]:null;
 var nextStop=currentIdx<routeStops.length-1?routeStops[currentIdx+1]:null;
-function navCard(id,isDrive){
+function navCard(id){
   var s=STOPS[id];
   var dayNum=s.days.replace(/Dag\s*/,'').split('-')[0];
   var dateStr=s.dates.split(' ')[0];
-  var emoji=isDrive?'🚗':'🏔️';
-  return '<a href="day.html?route='+route+'&stop='+id+'"'+(isDrive?' class="drive"':'')+'><div class="wd">'+dateStr+'</div><div class="dn">'+dayNum+'</div><div class="em">'+emoji+'</div><div class="loc">→'+s.name+'</div></a>';
+  var emojis={biarritz:'🏖️',baskenland:'🍽️',picos:'🏔️',llanes:'🌊',ordesa:'🪷',gavarnie:'⛰️',moezel:'🍷',berchtesgaden:'🚣',salzkammergut:'🚂',tatra:'⛓️',wachau:'🚴'};
+  var emoji=emojis[id]||'🏔️';
+  return '<a href="day.html?route='+route+'&stop='+id+'"'+(s.travel?' class="drive"':'')+'><div class="wd">'+dateStr+'</div><div class="dn">'+dayNum+'</div><div class="em">'+emoji+'</div><div class="loc">→'+s.name+'</div></a>';
 }
 var navHtml='';
 if(prevStop){navHtml+=navCard(prevStop,!!STOPS[prevStop].travel);}
