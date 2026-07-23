@@ -3,149 +3,188 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Roadtrip 2026 – Stop Detail</title>
+<title>Roadtrip 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0f1729;--surface:#1a2340;--card:#212d4a;--text:#e8eaf0;--muted:#8892a8;--accent:#ff9f48;--radius:12px;--font-head:'Bebas Neue',sans-serif;--font-body:'Inter',sans-serif}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--text);font-family:var(--font-body);min-height:100vh;padding-bottom:60px}
 h1,h2,h3{font-family:var(--font-head);letter-spacing:1px}
-.container{max-width:800px;margin:0 auto;padding:0 16px}
-.back{display:inline-flex;align-items:center;gap:6px;color:var(--accent);text-decoration:none;font-size:.9rem;padding:16px 0;font-weight:600}
-.back:hover{text-decoration:underline}
-.hero{text-align:center;padding:32px 16px 24px}
+.container{max-width:900px;margin:0 auto;padding:0 16px}
+.back{display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:.85rem;padding:16px 0;transition:.2s}
+.back:hover{color:var(--accent)}
+.hero{text-align:center;padding:24px 16px 16px}
 .hero .flag{font-size:2.5rem}
-.hero h1{font-size:clamp(2rem,5vw,3rem);line-height:1.1;margin:8px 0}
-.hero .dates{color:var(--muted);font-size:1rem}
-.weather{background:var(--surface);border-radius:var(--radius);padding:20px;margin:16px auto;max-width:500px;text-align:center}
-.weather .current{font-size:2.5rem;margin:8px 0}
-.weather .temp{font-size:1.4rem;font-weight:700}
-.weather .forecast{display:flex;justify-content:center;gap:16px;margin-top:12px}
-.weather .fc-day{text-align:center;font-size:.8rem;color:var(--muted)}
-.weather .fc-day .icon{font-size:1.3rem}
-.weather .fc-day .temps{font-size:.75rem;color:var(--text)}
-.section-title{font-size:1.6rem;margin:32px 0 16px;padding-left:4px}
-.activities{display:grid;gap:16px}
-.act-card{background:var(--card);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
-.act-card img{width:100%;height:200px;object-fit:cover;background:var(--surface)}
-.act-card .info{padding:16px}
-.act-card h3{font-size:1.2rem;margin-bottom:6px}
-.act-card p{font-size:.9rem;color:var(--muted);line-height:1.5}
-.videos{display:grid;gap:16px;margin-top:16px}
-.video-wrap{position:relative;padding-bottom:56.25%;height:0;border-radius:var(--radius);overflow:hidden}
-.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
-.loading{text-align:center;padding:40px;color:var(--muted)}
-@media(min-width:600px){.activities{grid-template-columns:repeat(2,1fr)}}
+.hero h1{font-size:clamp(2rem,5vw,3rem);line-height:1.1;margin:8px 0 4px}
+.hero .sub{color:var(--muted);font-size:.9rem}
+.weather{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;padding:16px 0;margin:0 16px}
+.weather-day{background:var(--card);border-radius:var(--radius);padding:12px 16px;text-align:center;min-width:90px}
+.weather-day .wicon{font-size:1.8rem}
+.weather-day .wtemp{font-size:1.1rem;font-weight:700;margin:4px 0}
+.weather-day .wlabel{font-size:.7rem;color:var(--muted);text-transform:uppercase}
+.gallery-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:16px 0;scrollbar-width:none}
+.gallery-wrap::-webkit-scrollbar{display:none}
+.gallery{display:flex;gap:12px;padding:0 16px;min-width:max-content}
+.gallery img{height:220px;border-radius:var(--radius);object-fit:cover;cursor:pointer;transition:.2s}
+.gallery img:hover{transform:scale(1.02);box-shadow:0 4px 20px rgba(0,0,0,.5)}
+.section{margin:24px 16px;background:var(--card);border-radius:var(--radius);padding:20px}
+.section h2{font-size:1.3rem;margin-bottom:14px;color:var(--accent)}
+.activity{padding:12px 0;border-bottom:1px solid var(--surface)}
+.activity:last-child{border:none}
+.activity .aname{font-weight:700;font-size:.95rem;margin-bottom:4px}
+.activity .adesc{font-size:.82rem;color:var(--muted)}
+.video-wrap{margin:24px 16px;border-radius:var(--radius);overflow:hidden;aspect-ratio:16/9}
+.video-wrap iframe{width:100%;height:100%;border:none}
 </style>
 </head>
 <body>
 <div class="container">
-<a class="back" href="index.html">← Terug naar overzicht</a>
-<div class="hero" id="hero"></div>
-<div class="weather" id="weather"><div class="loading">Weer laden...</div></div>
-<h2 class="section-title">Activiteiten</h2>
-<div class="activities" id="activities"></div>
-<h2 class="section-title" id="video-title" style="display:none">Video's</h2>
-<div class="videos" id="videos"></div>
+<a href="index.html" class="back">← Terug naar overzicht</a>
 </div>
+<div class="hero container">
+<div class="flag" id="flag"></div>
+<h1 id="title"></h1>
+<p class="sub" id="sub"></p>
+</div>
+<div class="weather container" id="weather">Weer laden...</div>
+<div class="gallery-wrap"><div class="gallery" id="gallery"></div></div>
+<div class="container"><div class="section" id="activities"><h2>🎯 Activiteiten</h2><div id="acts"></div></div></div>
+<div class="container"><div class="video-wrap" id="video-wrap" style="display:none"></div></div>
+
 <script>
-const STOPS={
-spanje:{
-baskenland:{name:'Baskenland',days:'Dag 2',dates:'za 2 aug',flag:'🇪🇸',lat:43.427,lon:-2.783,activities:[
-{title:'Gaztelugatxe',desc:'Het spectaculaire rotseiland met kapel, beroemd uit Game of Thrones. 241 treden omhoog met adembenemend uitzicht over de Biskaje.',img:'https://images.unsplash.com/photo-1594229415926-0ce66bb07106?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'},
-{title:'San Sebastián',desc:'Oude stad vol pintxos-bars, La Concha strand en de Monte Urgull. Culinaire hoofdstad van het Baskenland.',img:'https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'},
-{title:'Golf van Biskaje',desc:'Zwemmen en surfen langs de ruige Baskische kust. Dramatische kliffen en turquoise water.',img:'https://images.unsplash.com/photo-1663845074983-9a1a04604470?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'}
-],videos:['z9C_dGvT6dc']},
-picos:{name:'Picos de Europa',days:'Dag 4-5',dates:'ma-di 4-5 aug',flag:'🇪🇸',lat:43.265,lon:-4.950,activities:[
-{title:'Lagos de Covadonga',desc:'Twee prachtige bergmeren (Enol & Ercina) op 1000m hoogte omringd door groene pieken. Korte wandelingen rondom.',img:'https://images.unsplash.com/photo-1708282604919-246f61f6ccbf?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'},
-{title:'Ruta del Cares',desc:'Spectaculaire 12km kloofwandeling door de "Divine Gorge". Het pad is uitgehakt in de rotswand honderden meters boven de rivier.',img:'https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'},
-{title:'Fuente Dé kabelbaan',desc:'In 4 minuten 753 meter omhoog naar 1823m. Boven: ongelooflijk panorama over de Picos bergtoppen.',img:'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'}
-],videos:['93V9wkHHTZ0']},
-llanes:{name:'Llanes',days:'Dag 7',dates:'do 7 aug',flag:'🇪🇸',lat:43.421,lon:-4.756,activities:[
-{title:'Playa de Gulpiyuri',desc:'Uniek inland strandje: een verborgen zoutwaterstrand 100m van de kust, gevoed door ondergrondse tunnels. Bijzonder!',img:'https://images.unsplash.com/photo-1585504198199-20277593b94f?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'},
-{title:'Stranden van Llanes',desc:'Tientallen kleine baaien en stranden langs de Asturische kust. Helder water, kliffen en groene heuvels.',img:'https://images.unsplash.com/photo-1477346611705-65d1883cee1e?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'},
-{title:'Llanes dorpje',desc:'Kleurrijk vissersdorpje met havenmuur vol beschilderde kubus-kunstwerken (Los Cubos de la Memoria).',img:'https://images.unsplash.com/photo-1662486717047-ea680aa453e6?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'}
-],videos:[]},
-ordesa:{name:'Ordesa & Monte Perdido',days:'Dag 9-10',dates:'za-zo 9-10 aug',flag:'🇪🇸',lat:42.622,lon:-0.111,activities:[
-{title:'Ordesa-vallei',desc:'Een van de mooiste valleien van Europa. Verticale rotswanden van 1000m, watervallen en oerbossen.',img:'https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'},
-{title:'Cola de Caballo',desc:'Wandeling naar de "Paardenstaart"-waterval aan het einde van de vallei. 18km heen en terug door spectaculair landschap.',img:'https://images.unsplash.com/photo-1734027961088-cae5d6a1e30a?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'},
-{title:'Faja de Pelay & Canyon Añisclo',desc:'Panoramapad langs de rotswand met ongelooflijk uitzicht. Canyon Añisclo: diepe smalle kloof als alternatief.',img:'https://images.unsplash.com/photo-1486570318579-054c95b01160?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'},
-{title:'Torla & Aínsa',desc:'Torla: middeleeuws poortdorp aan de ingang van Ordesa. Aínsa: een van de mooiste dorpen van Spanje met kasteel.',img:'https://images.unsplash.com/photo-1661758079684-4fc647524b08?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'}
-],videos:['Q5pASf6M1_Y']},
-gavarnie:{name:'Cirque de Gavarnie',days:'Dag 12',dates:'di 12 aug',flag:'🇫🇷',lat:42.735,lon:-0.009,activities:[
-{title:'Cirque de Gavarnie (UNESCO)',desc:'Monumentaal amfitheater van 1500m hoge rotswanden met Europa\'s hoogste waterval (423m). UNESCO Werelderfgoed.',img:'https://images.unsplash.com/photo-1576228718724-e5483266fc9d?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'},
-{title:'Pont d\'Espagne',desc:'Prachtige watervallen in het Marcadau-dal nabij Cauterets. Meerdere cascades over granieten rotsen omringd door dennenbos.',img:'https://images.unsplash.com/photo-1561397125-062d6cf6dfc5?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'}
-],videos:['iZlO7Y5Qd54']}
-},
-slowakije:{
-moezel:{name:'Moezelstreek',days:'Dag 2',dates:'za 2 aug',flag:'🇩🇪',lat:49.545,lon:6.367,activities:[
-{title:'Moezel wijngaarden',desc:'Steile hellingen vol Riesling-wijnranken. Wandel tussen de terrassen met uitzicht over de rivier.',img:'https://images.unsplash.com/photo-1634251481470-a7b1b9acc958?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'},
-{title:'Pittoreske dorpjes',desc:'Vakwerkhuizen, kastelruïnes en gezellige wijnproeverijen in dorpjes als Cochem, Bernkastel-Kues en Beilstein.',img:'https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'},
-{title:'Boottochtje op de Moezel',desc:'Vaar over het rustige water tussen de wijngaarden. Kastelen en dorpjes glijden voorbij.',img:'https://images.unsplash.com/photo-1594229415926-0ce66bb07106?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'}
-],videos:[]},
-berchtesgaden:{name:'Berchtesgaden',days:'Dag 4-5',dates:'ma-di 4-5 aug',flag:'🇩🇪',lat:47.555,lon:12.988,activities:[
-{title:'Königssee',desc:'Smaragdgroen fjordmeer omringd door 2000m hoge bergen. Elektrische boten varen geruisloos over het spiegelgladde water.',img:'https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'},
-{title:'St. Bartholomä',desc:'Iconisch wit-rood kerkje op een schiereiland in het meer, met de dramatische Watzmann oostwand als achtergrond.',img:'https://images.unsplash.com/photo-1663845074983-9a1a04604470?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'},
-{title:'Jenner & Watzmann',desc:'Jenner kabelbaan naar 1874m voor panorama over het hele Berchtesgadener Land. Watzmann: iconische bergtop.',img:'https://images.unsplash.com/photo-1708282604919-246f61f6ccbf?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'},
-{title:'Ramsau',desc:'Het meest gefotografeerde dorpje van Duitsland: kerkje met Reiteralpe als achtergrond aan kristalhelder beekje.',img:'https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'}
-],videos:['VV8qJ8c7Lak']},
-salzkammergut:{name:'Salzkammergut',days:'Dag 7',dates:'do 7 aug',flag:'🇦🇹',lat:47.744,lon:13.386,activities:[
-{title:'Schafberg',desc:'Met de nostalgische stoomtandradtrein omhoog naar 1783m. Boven: 360° panorama over 7 meren.',img:'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'},
-{title:'Dachstein 5 Fingers',desc:'Vijf vingers reiken over de afgrond: spectaculair uitkijkplatform op 2100m met uitzicht over het Salzkammergut.',img:'https://images.unsplash.com/photo-1585504198199-20277593b94f?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'},
-{title:'Wolfgangsee',desc:'Kristalhelder bergmeer, perfect om te zwemmen. Omringd door bergen en charmante Oostenrijkse dorpjes.',img:'https://images.unsplash.com/photo-1477346611705-65d1883cee1e?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'}
-],videos:[]},
-tatra:{name:'Hoge Tatra',days:'Dag 9-10',dates:'za-zo 9-10 aug',flag:'🇸🇰',lat:49.165,lon:20.213,activities:[
-{title:'Lomnický štít',desc:'Met de kabelbaan naar 2634m: het hoogste per kabel bereikbare punt in de Tatra. Ongelooflijk uitzicht tot in Polen.',img:'https://images.unsplash.com/photo-1662486717047-ea680aa453e6?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'},
-{title:'Štrbské pleso',desc:'Iconisch bergmeer op 1346m met weerspiegeling van de Tatra-toppen. Wandelpaden rondom.',img:'https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'},
-{title:'Suchá Belá gorge',desc:'Avontuurlijke kloof in Slovenský Raj: klimmen via ladders, kettingen en bruggetjes langs watervallen.',img:'https://images.unsplash.com/photo-1734027961088-cae5d6a1e30a?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'},
-{title:'Dobšinská ijsgrot',desc:'UNESCO-ijsgrot met tot 25m dikke ijsformaties het hele jaar door. Temperatuur binnen: -4 tot 0°C.',img:'https://images.unsplash.com/photo-1486570318579-054c95b01160?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'}
-],videos:['x1YiJgA8lpw']},
-wachau:{name:'Wachau',days:'Dag 12',dates:'di 12 aug',flag:'🇦🇹',lat:48.375,lon:15.598,activities:[
-{title:'Donau zwemmen',desc:'Wild zwemmen in de Donau bij Krems. Verrassend schoon water met uitzicht op wijngaarden en kastelen.',img:'https://images.unsplash.com/photo-1661758079684-4fc647524b08?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'},
-{title:'Fietsen langs de Donau',desc:'De Donaufietsroute door de Wachau: vlakke paden tussen abrikozentuinen en historische dorpjes.',img:'https://images.unsplash.com/photo-1576228718724-e5483266fc9d?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'},
-{title:'Wijngaarden Krems',desc:'De steile terrassen van de Wachau produceren wereldberoemde Grüner Veltliner en Riesling. Proeverijen overal.',img:'https://images.unsplash.com/photo-1561397125-062d6cf6dfc5?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb'}
-],videos:[]}
-}
+var params=new URLSearchParams(location.search);
+var route=params.get('route')||'spanje';
+var stopId=params.get('stop')||'baskenland';
+var isHot=route==='spanje';
+document.documentElement.style.setProperty('--accent',isHot?'#ff9f48':'#48a9ff');
+
+var STOPS={
+baskenland:{name:"Baskenland",country:"\ud83c\uddea\ud83c\uddf8",days:"Dag 2",dates:"za 2 aug",lat:43.427,lon:-2.783,
+  images:[
+    {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Gaztelugache%2C_Bermeo%2C_Pa%C3%ADs_Vasco%2C_Espa%C3%B1a%2C_2019-08-13%2C_DD_14.jpg/1280px-Gaztelugache%2C_Bermeo%2C_Pa%C3%ADs_Vasco%2C_Espa%C3%B1a%2C_2019-08-13%2C_DD_14.jpg",cap:"Gaztelugatxe"},
+    {url:"https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?w=1200&q=80",cap:"San Sebasti\u00e1n strand"},
+    {url:"https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&q=80",cap:"Baskische kust"}
+  ],
+  activities:["Gaztelugatxe - Game of Thrones eiland, 241 treden naar de hermitage","San Sebasti\u00e1n - Pintxos in de oude stad, La Concha strand","Zwemmen in de Golf van Biskaje"],
+  video:"VF_Vr-ccayI"},
+picos:{name:"Picos de Europa",country:"\ud83c\uddea\ud83c\uddf8",days:"Dag 4-5",dates:"ma-di 4-5 aug",lat:43.265,lon:-4.950,
+  images:[
+    {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Lagos_de_Covadonga%2C2.jpg/1280px-Lagos_de_Covadonga%2C2.jpg",cap:"Lagos de Covadonga"},
+    {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Ruta_de_Cares_049.jpg/1280px-Ruta_de_Cares_049.jpg",cap:"Ruta del Cares"},
+    {url:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80",cap:"Berglandschap"}
+  ],
+  activities:["Lagos de Covadonga - Smaragdgroene bergmeren op 1000m","Ruta del Cares - Spectaculaire 12km kloofwandeling","Fuente D\u00e9 kabelbaan - In 4 min naar 1800m hoogte","Bergdorpjes verkennen"],
+  video:"93V9wkHHTZ0"},
+llanes:{name:"Llanes & Kust",country:"\ud83c\uddea\ud83c\uddf8",days:"Dag 7",dates:"do 7 aug",lat:43.421,lon:-4.756,
+  images:[
+    {url:"https://upload.wikimedia.org/wikipedia/commons/8/8f/Gulpiyuri.jpg",cap:"Playa de Gulpiyuri"},
+    {url:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80",cap:"Cantabrische kust"}
+  ],
+  activities:["Playa de Gulpiyuri - Uniek inland strand (UNESCO)","Diverse stranden langs de Cantabrische kust","Llanes oude centrum en haven"],
+  video:null},
+ordesa:{name:"Ordesa & Monte Perdido",country:"\ud83c\uddea\ud83c\uddf8",days:"Dag 9-10",dates:"za-zo 9-10 aug",lat:42.622,lon:-0.111,
+  images:[
+    {url:"https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8?w=1200&q=80",cap:"Ordesa vallei"},
+    {url:"https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&q=80",cap:"Berglandschap"}
+  ],
+  activities:["Ordesa-vallei - Spectaculaire canyon wandeling","Cola de Caballo trail - Naar de 'paardenstaart' waterval","Faja de Pelay - Panoramapad langs de canyon wand","Canyon A\u00f1isclo - Optionele extra kloofwandeling","Middeleeuws A\u00ednsa bezoeken"],
+  video:"Q5pASf6M1_Y"},
+gavarnie:{name:"Cirque de Gavarnie",country:"\ud83c\uddeb\ud83c\uddf7",days:"Dag 12",dates:"di 12 aug",lat:42.735,lon:-0.009,
+  images:[
+    {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Cirque_de_Gavarnie%2C_Haute-Pyr%C3%A9n%C3%A9es%2C_France.jpg/1280px-Cirque_de_Gavarnie%2C_Haute-Pyr%C3%A9n%C3%A9es%2C_France.jpg",cap:"Cirque de Gavarnie"},
+    {url:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80",cap:"Pyrenee\u00ebn"}
+  ],
+  activities:["Cirque de Gavarnie - UNESCO, Europa's hoogste waterval (423m)","Pont d'Espagne - Cascade en bergmeer bij Cauterets","Terrassen en relaxen in het bergdorp"],
+  video:"Q5pASf6M1_Y"},
+moezel:{name:"Moezelstreek",country:"\ud83c\udde9\ud83c\uddea",days:"Dag 2",dates:"za 2 aug",lat:49.545,lon:6.367,
+  images:[
+    {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Vineyard_by_the_Mosel_jun_2018_%281%29.jpg/1280px-Vineyard_by_the_Mosel_jun_2018_%281%29.jpg",cap:"Moezel wijngaarden"},
+    {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Cochem%2C_Reichsburg%2C_2012-08_CN-01.jpg/1280px-Cochem%2C_Reichsburg%2C_2012-08_CN-01.jpg",cap:"Cochem kasteel"},
+    {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Aerial_image_of_the_Moselle_in_Bernkastel-Kues_%28view_from_the_southeast%29.jpg/1280px-Aerial_image_of_the_Moselle_in_Bernkastel-Kues_%28view_from_the_southeast%29.jpg",cap:"Bernkastel-Kues"}
+  ],
+  activities:["Wijngaarden wandelen langs steile hellingen","Pittoreske dorpjes: Bernkastel-Kues, Cochem","Boottochtje op de Moezel","Zwemmen in de rivier"],
+  video:null},
+berchtesgaden:{name:"Berchtesgaden",country:"\ud83c\udde9\ud83c\uddea",days:"Dag 4-5",dates:"ma-di 4-5 aug",lat:47.555,lon:12.988,
+  images:[
+    {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Lago_del_Rey%2C_Alemania%2C_2019-05-17%2C_DD_25.jpg/1280px-Lago_del_Rey%2C_Alemania%2C_2019-05-17%2C_DD_25.jpg",cap:"K\u00f6nigssee"},
+    {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Ramsau_bei_Berchtesgaden_%28DE%29%2C_Hochkalter_vom_Hintersee_--_2024_--_0541.jpg/1280px-Ramsau_bei_Berchtesgaden_%28DE%29%2C_Hochkalter_vom_Hintersee_--_2024_--_0541.jpg",cap:"Ramsau & Hintersee"},
+    {url:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80",cap:"Beierse Alpen"}
+  ],
+  activities:["K\u00f6nigssee bootje - Smaragdgroen Alpenmeer","St. Bartholom\u00e4 - Iconisch kerkje aan het meer","Jenner kabelbaan - Panorama over de Alpen","Watzmann wandelingen","Ramsau bij Berchtesgaden - Fotogeniekste dorp"],
+  video:"OL6TeMIrLdI"},
+salzkammergut:{name:"Salzkammergut",country:"\ud83c\udde6\ud83c\uddf9",days:"Dag 7",dates:"do 7 aug",lat:47.744,lon:13.386,
+  images:[
+    {url:"https://images.unsplash.com/photo-1597466765990-64ad1c35dafc?w=1200&q=80",cap:"Hallstatt"},
+    {url:"https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=1200&q=80",cap:"Alpenmeer"},
+    {url:"https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=1200&q=80",cap:"Bergmeer"}
+  ],
+  activities:["Schafberg tandradtrein - 1783m met uitzicht over 7 meren","Dachstein 5 Fingers - Spectaculair glazen viewpoint","Wolfgangsee zwemmen","Hallstatt (optioneel) - Beroemdste Oostenrijkse dorpje"],
+  video:null},
+tatra:{name:"Hoge Tatra",country:"\ud83c\uddf8\ud83c\uddf0",days:"Dag 9-10",dates:"za-zo 9-10 aug",lat:49.165,lon:20.213,
+  images:[
+    {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/High_Tatra_Mountains_from_%C5%A0trba.jpg/1280px-High_Tatra_Mountains_from_%C5%A0trba.jpg",cap:"Hoge Tatra panorama"},
+    {url:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80",cap:"Bergtoppen"}
+  ],
+  activities:["Lomnick\u00fd \u0161t\u00edt kabelbaan - Naar 2634m!","\u0160trbsk\u00e9 pleso - Prachtig bergmeer","Such\u00e1 Bel\u00e1 gorge - Avontuurlijke route met ladders & kettingen","Dob\u0161insk\u00e1 ijsgrot - Ondergrondse ijswereld"],
+  video:"x1YiJgA8lpw"},
+wachau:{name:"Wachau & Donau",country:"\ud83c\udde6\ud83c\uddf9",days:"Dag 12",dates:"di 12 aug",lat:48.375,lon:15.598,
+  images:[
+    {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Ruine_Aggstein_20180527.jpg/1280px-Ruine_Aggstein_20180527.jpg",cap:"Burgruine Aggstein"},
+    {url:"https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=1200&q=80",cap:"Fietsen langs de Donau"}
+  ],
+  activities:["Wijngaarden bezoeken - Beroemde Gr\u00fcner Veltliner","Fietsen langs de Donau","D\u00fcrnstein - Middeleeuws stadje met blauwe kerk","Donau zwemmen","Krems verkennen"],
+  video:null}
 };
 
-const params=new URLSearchParams(location.search);
-const route=params.get('route');
-const stop=params.get('stop');
-const data=STOPS[route]&&STOPS[route][stop];
+var stop=STOPS[stopId];
+if(!stop){document.body.innerHTML='<p style="padding:40px;text-align:center">Stop niet gevonden. <a href="index.html" style="color:var(--accent)">Terug</a></p>';throw new Error('stop not found')}
 
-if(!data){document.getElementById('hero').innerHTML='<h1>Stop niet gevonden</h1>';document.getElementById('weather').style.display='none';}
-else{
-  document.title='Roadtrip 2026 – '+data.name;
-  if(route==='slowakije')document.documentElement.style.setProperty('--accent','#48a9ff');
-  document.getElementById('hero').innerHTML='<div class="flag">'+data.flag+'</div><h1>'+data.name+'</h1><div class="dates">'+data.days+' · '+data.dates+'</div>';
+document.title='Roadtrip 2026 \u2013 '+stop.name;
+document.getElementById('flag').textContent=stop.country;
+document.getElementById('title').textContent=stop.name;
+document.getElementById('sub').textContent=stop.days+' \u2022 '+stop.dates+' 2026';
 
-  // Weather
-  fetch('https://api.open-meteo.com/v1/forecast?latitude='+data.lat+'&longitude='+data.lon+'&current=temperature_2m,weathercode&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto&forecast_days=3')
-  .then(r=>r.json()).then(w=>{
-    const wmo=c=>{if(c===0)return'☀️';if(c<=3)return'⛅';if(c<=48)return'🌫️';if(c<=67)return'🌧️';if(c<=77)return'🌨️';if(c<=82)return'🌦️';return'⛈️'};
-    const days=['Vandaag','Morgen','Overmorgen'];
-    let html='<div class="current">'+wmo(w.current.weathercode)+'</div><div class="temp">'+Math.round(w.current.temperature_2m)+'°C nu</div>';
-    html+='<div class="forecast">';
-    w.daily.time.forEach((t,i)=>{html+='<div class="fc-day"><div class="icon">'+wmo(w.daily.weathercode[i])+'</div><div>'+days[i]+'</div><div class="temps">'+Math.round(w.daily.temperature_2m_min[i])+'° / '+Math.round(w.daily.temperature_2m_max[i])+'°</div></div>'});
-    html+='</div>';
-    document.getElementById('weather').innerHTML=html;
-  }).catch(()=>{document.getElementById('weather').innerHTML='<div style="color:var(--muted)">Weer niet beschikbaar</div>'});
+// Gallery
+var gal=document.getElementById('gallery');
+stop.images.forEach(function(img){
+  var el=document.createElement('img');
+  el.src=img.url;el.alt=img.cap;el.title=img.cap;
+  el.loading='lazy';
+  gal.appendChild(el);
+});
 
-  // Activities
-  const actEl=document.getElementById('activities');
-  data.activities.forEach(a=>{
-    actEl.innerHTML+='<div class="act-card"><img src="'+a.img+'" alt="'+a.title+'" loading="lazy"><div class="info"><h3>'+a.title+'</h3><p>'+a.desc+'</p></div></div>';
-  });
+// Activities
+var acts=document.getElementById('acts');
+stop.activities.forEach(function(a){
+  var parts=a.split(' - ');
+  var div=document.createElement('div');
+  div.className='activity';
+  div.innerHTML='<div class="aname">'+parts[0]+'</div>'+(parts[1]?'<div class="adesc">'+parts[1]+'</div>':'');
+  acts.appendChild(div);
+});
 
-  // Videos
-  if(data.videos&&data.videos.length){
-    document.getElementById('video-title').style.display='';
-    const vidEl=document.getElementById('videos');
-    data.videos.forEach(id=>{
-      vidEl.innerHTML+='<div class="video-wrap"><iframe src="https://www.youtube.com/embed/'+id+'" allowfullscreen loading="lazy"></iframe></div>';
-    });
-  }
+// Video
+if(stop.video){
+  var vw=document.getElementById('video-wrap');
+  vw.style.display='block';
+  vw.innerHTML='<iframe src="https://www.youtube.com/embed/'+stop.video+'?rel=0" allowfullscreen loading="lazy"></iframe>';
 }
+
+// Weather
+function wmoIcon(code){
+  if(code<=1)return'\u2600\ufe0f';if(code<=3)return'\u26c5';if(code<=48)return'\ud83c\udf2b\ufe0f';
+  if(code<=67)return'\ud83c\udf27\ufe0f';if(code<=77)return'\ud83c\udf28\ufe0f';if(code<=82)return'\ud83c\udf26\ufe0f';return'\u26c8\ufe0f';
+}
+var wUrl='https://api.open-meteo.com/v1/forecast?latitude='+stop.lat+'&longitude='+stop.lon+'&current=temperature_2m,weathercode&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto&forecast_days=3';
+fetch(wUrl).then(function(r){return r.json()}).then(function(d){
+  var html='';
+  html+='<div class="weather-day"><div class="wlabel">Nu</div><div class="wicon">'+wmoIcon(d.current.weathercode)+'</div><div class="wtemp">'+Math.round(d.current.temperature_2m)+'\u00b0C</div></div>';
+  for(var i=0;i<d.daily.time.length;i++){
+    var day=new Date(d.daily.time[i]).toLocaleDateString('nl',{weekday:'short'});
+    html+='<div class="weather-day"><div class="wlabel">'+day+'</div><div class="wicon">'+wmoIcon(d.daily.weathercode[i])+'</div><div class="wtemp">'+Math.round(d.daily.temperature_2m_max[i])+'\u00b0 / '+Math.round(d.daily.temperature_2m_min[i])+'\u00b0</div></div>';
+  }
+  document.getElementById('weather').innerHTML=html;
+}).catch(function(){document.getElementById('weather').innerHTML='<span style="color:var(--muted)">Weer niet beschikbaar</span>'});
 </script>
 </body>
 </html>
