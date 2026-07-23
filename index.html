@@ -116,7 +116,7 @@ const SPANJE=[
 const SLOWAKIJE=[
 {wd:'za',d:1,type:'drive',emoji:'🚗',loc:'Hove→Moezel',from:'Hove',to:'Moezelstreek',km:250,time:'~2.5u',route:'E313→A4→E25, tussenstop Pfälzerwald',acts:['Tussenstop Altschlosspfad - zandsteen rotsformaties in Pfälzerwald','Aankomst Moezel','Zwemmen in de Moezel'],tags:['drive','river','short'],leg:0,lat:49.545,lon:6.367},
 {wd:'zo',d:2,type:'explore',emoji:'🍷',loc:'Moezel',acts:['Wijngaarden wandelen','Pittoreske dorpjes','Boottochtje op de Moezel'],tags:['explore','wine','boat'],leg:1,lat:49.545,lon:6.367},
-{wd:'ma',d:3,type:'drive',emoji:'🚗',loc:'→Berchtes.',from:'Moezel',to:'Berchtesgaden',km:500,time:'~5u',route:'A1→A3→A7, via Oberstdorf',acts:['Roadtrip door Duitsland','Tussenstop Breitachklamm - diepste kloof van Midden-Europa (Oberstdorf)','Aankomst Beierse Alpen'],tags:['drive','germany','alps'],leg:1,lat:47.555,lon:12.988},
+{wd:'ma',d:3,type:'drive',emoji:'🚗',loc:'→Berchtes.',from:'Moezel',to:'Berchtesgaden',km:500,time:'~5u',route:'A1→A3→A7, via Oberstdorf',acts:['Roadtrip door Duitsland','Tussenstop Gertelbach-Wasserfälle - spectaculaire waterval in Zwarte Woud','Tussenstop Breitachklamm - diepste kloof van Midden-Europa (Oberstdorf)','Aankomst Beierse Alpen'],tags:['drive','germany','alps'],leg:1,lat:47.555,lon:12.988,links:[{label:'🎥 Gertelbach-Wasserfälle',url:'https://www.youtube.com/watch?v=GaCWJRc97g4'}]},
 {wd:'di',d:4,type:'explore',emoji:'⛵',loc:'Königssee',acts:['Königssee bootje (smaragdgroen meer)','Zwemmen in het meer','St. Bartholomä kerkje'],tags:['explore','lake','boat'],leg:2,lat:47.555,lon:12.988},
 {wd:'wo',d:5,type:'explore',emoji:'🥾',loc:'Berchtes.',acts:['Jenner kabelbaan','Watzmann wandelingen','Ramsau bij Berchtesgaden'],tags:['hike','cable car','alps'],leg:2,lat:47.555,lon:12.988},
 {wd:'do',d:6,type:'drive',emoji:'🚗',loc:'→Salzkam.',from:'Berchtesgaden',to:'Salzkammergut',km:100,time:'~1.5u',route:'B305→A1',acts:['Korte rit','Wolfgangsee zwemmen','Relaxen aan het meer'],tags:['drive','lake','short'],leg:2,lat:47.744,lon:13.386},
@@ -276,6 +276,7 @@ function renderDays(){
     }
 
     html+='<ul>'+day.acts.map(function(a){return '<li>'+a+'</li>'}).join('')+'</ul>';
+    if(day.links&&day.links.length){html+='<div class="day-links">'+day.links.map(function(l){return '<a href="'+l.url+'" target="_blank" rel="noopener">'+l.label+'</a>'}).join(' ')+'</div>';}
     html+='<div class="tags">'+day.tags.map(function(t){return '<span class="tag">'+t+'</span>'}).join('')+'</div>';
     card.innerHTML=html;
     var stopMap=isHot?{1:'larochelle',2:'baskenland',3:'baskenland',4:'picos',5:'picos',6:'llanes',7:'llanes',8:'ordesa',9:'ordesa',10:'ordesa',11:'gavarnie',12:'gavarnie',13:'gavarnie',14:'gavarnie'}:{1:'moezel',2:'moezel',3:'berchtesgaden',4:'berchtesgaden',5:'berchtesgaden',6:'salzkammergut',7:'salzkammergut',8:'tatra',9:'tatra',10:'tatra',11:'wachau',12:'wachau',13:'wachau',14:'wachau'};
