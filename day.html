@@ -70,7 +70,7 @@ h1,h2,h3{font-family:var(--font-head);letter-spacing:1px}
 
 <script>
 var params=new URLSearchParams(location.search);
-var route=params.get('route')||'spanje';
+var route=params.get('route')||(localStorage.getItem('roadtrip-route')==='cool'?'slowakije':'spanje');
 var stopId=params.get('stop')||'baskenland';
 var isHot=route==='spanje';
 document.documentElement.style.setProperty('--accent',isHot?'#ff9f48':'#48a9ff');

@@ -138,7 +138,7 @@ const LABELS_SK=['Hove','Moezel','Berchtesgaden','Salzkammergut','Hoge Tatra','W
 const TIPS_SP='<li>Gebruik ABRP voor laadplanning</li><li>Noordkust Spanje is fris (18-24°C) — perfect!</li><li>Vroeg boeken: Picos & Ordesa accommodatie</li><li>Wandelschoenen mee (Ruta del Cares, Ordesa)</li><li>Flexibel blijven — weer in de bergen wisselt</li>';
 const TIPS_SK='<li>Gebruik ABRP voor laadplanning</li><li>350-400km range per dag is comfortabel</li><li>Vroeg boeken: Hoge Tatra accommodatie</li><li>Waterschoenen mee voor gorges (Slovenský Raj)</li><li>Flexibel blijven — weer in de bergen wisselt</li>';
 
-let isHot=!location.hash.includes('slowakije');
+let isHot=localStorage.getItem('roadtrip-route')==='cool'?false:localStorage.getItem('roadtrip-route')==='hot'?true:!location.hash.includes('slowakije');
 let selectedDay=0;
 let map,routeLines=[],markers=[],pulseMarker=null;
 let scrollLocked=false;
@@ -281,7 +281,7 @@ function render(){
   renderMap();
 }
 
-function toggle(){isHot=!isHot;selectedDay=0;render();history.replaceState(null,'','#'+(isHot?'spanje':'slowakije'))}
+function toggle(){isHot=!isHot;localStorage.setItem('roadtrip-route',isHot?'hot':'cool');selectedDay=0;render();history.replaceState(null,'','#'+(isHot?'spanje':'slowakije'))}
 
 // Scroll spy: update selected day based on which card is in view
 function setupScrollSpy(){
