@@ -90,46 +90,46 @@ footer a{color:var(--accent);text-decoration:none}
 <div class="tips" id="tips"></div>
 </div>
 
-<footer>Roadtrip 2026 · Gezin Smets-Gegg · aug 2026<br>Gemaakt door <a href="https://github.com/ewouds/roadtrip26">Koda 🐾</a> · <span style="opacity:.6">v20260723.19</span></footer>
+<footer>Roadtrip 2026 · Gezin Smets-Gegg · aug 2026<br>Gemaakt door <a href="https://github.com/ewouds/roadtrip26">Koda 🐾</a> · <span style="opacity:.6">v20260723.20</span></footer>
 
 <div class="fab" id="fab" onclick="toggle()"></div>
 
 <script src="https://unpkg.com/leaflet@1.9/dist/leaflet.js"></script>
 <script>
 const SPANJE=[
-{wd:'vr',d:1,type:'drive',emoji:'🚗',loc:'Hove→La Rochelle',from:'Hove',to:'La Rochelle',km:640,time:'~6.5u',route:'A-wegen via Parijs',acts:['Roadtrip dag 1','Aankomst La Rochelle eind namiddag','Vieux-Port & oude stad verkennen'],tags:['drive','france','coast'],leg:0,lat:46.160,lon:-1.152},
-{wd:'za',d:2,type:'drive',emoji:'🚗',loc:'La Rochelle→Baskenland',from:'La Rochelle',to:'San Sebastián',km:460,time:'~4.5u',route:'Via Biarritz (lunchstop)',acts:['Ochtend vertrek','Lunchstop Biarritz','Aankomst San Sebastián namiddag'],tags:['drive','france','coast'],leg:0,lat:43.327,lon:-1.985},
-{wd:'zo',d:3,type:'explore',emoji:'🏖️',loc:'Baskenland',acts:['Gaztelugatxe (Game of Thrones eiland)','San Sebastián oude stad + pintxos','Zwemmen Golf van Biskaje'],tags:['explore','coast','culture'],leg:1,lat:43.327,lon:-1.985},
-{wd:'zo',d:3,type:'drive',emoji:'🚗',loc:'→Picos',from:'Baskenland',to:'Picos de Europa',km:300,time:'~3.5u',route:'Kustweg A8 langs Cantabrische zee',acts:['Kustroute met uitzichtpunten','Aankomst Picos de Europa'],tags:['drive','coast'],leg:1,lat:43.265,lon:-4.950},
-{wd:'ma',d:4,type:'explore',emoji:'🥾',loc:'Picos',acts:['Lagos de Covadonga (bergmeren)','Korte wandelingen rond de meren','Bergdorpjes verkennen'],tags:['hike','mountains','lakes'],leg:2,lat:43.265,lon:-4.950},
-{wd:'di',d:5,type:'explore',emoji:'🥾',loc:'Picos',acts:['Ruta del Cares (12km kloofwandeling)','Fuente Dé kabelbaan (1800m)','Spectaculaire bergpanoramas'],tags:['hike','gorge','cable car'],leg:2,lat:43.265,lon:-4.950},
-{wd:'wo',d:6,type:'drive',emoji:'🚗',loc:'→Llanes',from:'Picos de Europa',to:'Llanes kust',km:80,time:'~1.5u',route:'N634/A8 kustweg',acts:['Korte rit naar de kust','Strandmiddag','Llanes oude centrum verkennen'],tags:['drive','beach','short'],leg:2,lat:43.421,lon:-4.756},
-{wd:'do',d:7,type:'beach',emoji:'🏖️',loc:'Llanes',acts:['Playa de Gulpiyuri (inland strand!)','Diverse stranden langs de kust','Relaxen en zwemmen'],tags:['beach','chill','unique'],leg:3,lat:43.421,lon:-4.756},
-{wd:'vr',d:8,type:'drive',emoji:'🚗',loc:'→Ordesa',from:'Llanes',to:'Torla/Ordesa',km:500,time:'~5.5u',route:'A8→A67→N260, laadstop Huesca',acts:['Roadtrip door Noord-Spanje','Stop in middeleeuws Aínsa','Aankomst Ordesa vallei'],tags:['drive','mountains','medieval'],leg:3,lat:42.622,lon:-0.111},
-{wd:'za',d:9,type:'explore',emoji:'🥾',loc:'Ordesa',acts:['Ordesa-vallei wandeling','Cola de Caballo trail','Spectaculaire watervallen'],tags:['hike','waterfall','national park'],leg:4,lat:42.622,lon:-0.111},
-{wd:'zo',d:10,type:'explore',emoji:'🥾',loc:'Ordesa',acts:['Faja de Pelay (panoramapad)','Canyon Añisclo (optioneel)','Berglandschappen'],tags:['hike','canyon','views'],leg:4,lat:42.622,lon:-0.111},
-{wd:'ma',d:11,type:'drive',emoji:'🚗',loc:'→Gavarnie',from:'Torla',to:'Gavarnie (FR)',km:150,time:'~2.5u',route:'Col du Pourtalet of Bielsa tunnel',acts:['Bergpas naar Frankrijk','Wandeling Cirque de Gavarnie','UNESCO werelderfgoed'],tags:['drive','mountains','france'],leg:4,lat:42.735,lon:-0.009},
-{wd:'di',d:12,type:'chill',emoji:'😌',loc:'Gavarnie',acts:['UNESCO Cirque de Gavarnie','Pont d\'Espagne (optioneel)','Terrassen en relaxen'],tags:['chill','unesco','relax'],leg:5,lat:42.735,lon:-0.009},
-{wd:'wo',d:13,type:'drive',emoji:'🚗',loc:'→Loire',from:'Gavarnie',to:'Loire/Bourgogne',km:500,time:'~5.5u',route:'A64→A20, laadstop Limoges',acts:['Roadtrip door Zuid-Frankrijk','Laadstop Limoges','Overnachting Loire/Bourgogne'],tags:['drive','france','return'],leg:5,lat:47.394,lon:0.685},
-{wd:'do',d:14,type:'drive',emoji:'🏠',loc:'→Hove',from:'Loire',to:'Hove',km:500,time:'~5u',route:'A6→A26→E17, laadstop Reims',acts:['Laatste roadtrip-dag','Laadstop Reims','Thuiskomst! 🎉'],tags:['drive','home','return'],leg:6,lat:51.155,lon:4.475},
-{wd:'vr',d:15,type:'chill',emoji:'😴',loc:'Thuis',acts:['Uitpakken','Uitrusten','Vakantie verwerken'],tags:['home','chill','rest'],leg:6}
+{wd:'za',d:1,type:'drive',emoji:'🚗',loc:'Hove→La Rochelle',from:'Hove',to:'La Rochelle',km:640,time:'~6.5u',route:'A-wegen via Parijs',acts:['Roadtrip dag 1','Aankomst La Rochelle eind namiddag','Vieux-Port & oude stad verkennen'],tags:['drive','france','coast'],leg:0,lat:46.160,lon:-1.152},
+{wd:'zo',d:2,type:'drive',emoji:'🚗',loc:'La Rochelle→Baskenland',from:'La Rochelle',to:'San Sebastián',km:460,time:'~4.5u',route:'Via Biarritz (lunchstop)',acts:['Ochtend vertrek','Lunchstop Biarritz','Aankomst San Sebastián namiddag'],tags:['drive','france','coast'],leg:0,lat:43.327,lon:-1.985},
+{wd:'ma',d:3,type:'explore',emoji:'🏖️',loc:'Baskenland',acts:['Gaztelugatxe (Game of Thrones eiland)','San Sebastián oude stad + pintxos','Zwemmen Golf van Biskaje'],tags:['explore','coast','culture'],leg:1,lat:43.327,lon:-1.985},
+{wd:'ma',d:3,type:'drive',emoji:'🚗',loc:'→Picos',from:'Baskenland',to:'Picos de Europa',km:300,time:'~3.5u',route:'Kustweg A8 langs Cantabrische zee',acts:['Kustroute met uitzichtpunten','Aankomst Picos de Europa'],tags:['drive','coast'],leg:1,lat:43.265,lon:-4.950},
+{wd:'di',d:4,type:'explore',emoji:'🥾',loc:'Picos',acts:['Lagos de Covadonga (bergmeren)','Korte wandelingen rond de meren','Bergdorpjes verkennen'],tags:['hike','mountains','lakes'],leg:2,lat:43.265,lon:-4.950},
+{wd:'wo',d:5,type:'explore',emoji:'🥾',loc:'Picos',acts:['Ruta del Cares (12km kloofwandeling)','Fuente Dé kabelbaan (1800m)','Spectaculaire bergpanoramas'],tags:['hike','gorge','cable car'],leg:2,lat:43.265,lon:-4.950},
+{wd:'do',d:6,type:'drive',emoji:'🚗',loc:'→Llanes',from:'Picos de Europa',to:'Llanes kust',km:80,time:'~1.5u',route:'N634/A8 kustweg',acts:['Korte rit naar de kust','Strandmiddag','Llanes oude centrum verkennen'],tags:['drive','beach','short'],leg:2,lat:43.421,lon:-4.756},
+{wd:'vr',d:7,type:'beach',emoji:'🏖️',loc:'Llanes',acts:['Playa de Gulpiyuri (inland strand!)','Diverse stranden langs de kust','Relaxen en zwemmen'],tags:['beach','chill','unique'],leg:3,lat:43.421,lon:-4.756},
+{wd:'za',d:8,type:'drive',emoji:'🚗',loc:'→Ordesa',from:'Llanes',to:'Torla/Ordesa',km:500,time:'~5.5u',route:'A8→A67→N260, laadstop Huesca',acts:['Roadtrip door Noord-Spanje','Stop in middeleeuws Aínsa','Aankomst Ordesa vallei'],tags:['drive','mountains','medieval'],leg:3,lat:42.622,lon:-0.111},
+{wd:'zo',d:9,type:'explore',emoji:'🥾',loc:'Ordesa',acts:['Ordesa-vallei wandeling','Cola de Caballo trail','Spectaculaire watervallen'],tags:['hike','waterfall','national park'],leg:4,lat:42.622,lon:-0.111},
+{wd:'ma',d:10,type:'explore',emoji:'🥾',loc:'Ordesa',acts:['Faja de Pelay (panoramapad)','Canyon Añisclo (optioneel)','Berglandschappen'],tags:['hike','canyon','views'],leg:4,lat:42.622,lon:-0.111},
+{wd:'di',d:11,type:'drive',emoji:'🚗',loc:'→Gavarnie',from:'Torla',to:'Gavarnie (FR)',km:150,time:'~2.5u',route:'Col du Pourtalet of Bielsa tunnel',acts:['Bergpas naar Frankrijk','Wandeling Cirque de Gavarnie','UNESCO werelderfgoed'],tags:['drive','mountains','france'],leg:4,lat:42.735,lon:-0.009},
+{wd:'wo',d:12,type:'chill',emoji:'😌',loc:'Gavarnie',acts:['UNESCO Cirque de Gavarnie','Pont d\'Espagne (optioneel)','Terrassen en relaxen'],tags:['chill','unesco','relax'],leg:5,lat:42.735,lon:-0.009},
+{wd:'do',d:13,type:'drive',emoji:'🚗',loc:'→Loire',from:'Gavarnie',to:'Loire/Bourgogne',km:500,time:'~5.5u',route:'A64→A20, laadstop Limoges',acts:['Roadtrip door Zuid-Frankrijk','Laadstop Limoges','Overnachting Loire/Bourgogne'],tags:['drive','france','return'],leg:5,lat:47.394,lon:0.685},
+{wd:'vr',d:14,type:'drive',emoji:'🏠',loc:'→Hove',from:'Loire',to:'Hove',km:500,time:'~5u',route:'A6→A26→E17, laadstop Reims',acts:['Laatste roadtrip-dag','Laadstop Reims','Thuiskomst! 🎉'],tags:['drive','home','return'],leg:6,lat:51.155,lon:4.475},
+{wd:'za',d:15,type:'chill',emoji:'😴',loc:'Thuis',acts:['Uitpakken','Uitrusten','Vakantie verwerken'],tags:['home','chill','rest'],leg:6}
 ];
 const SLOWAKIJE=[
-{wd:'vr',d:1,type:'drive',emoji:'🚗',loc:'Hove→Moezel',from:'Hove',to:'Moezelstreek',km:250,time:'~2.5u',route:'E313→E25',acts:['Korte rit naar Duitsland','Zwemmen in de Moezel','Relaxen aan de rivier'],tags:['drive','river','short'],leg:0,lat:49.545,lon:6.367},
-{wd:'za',d:2,type:'explore',emoji:'🍷',loc:'Moezel',acts:['Wijngaarden wandelen','Pittoreske dorpjes','Boottochtje op de Moezel'],tags:['explore','wine','boat'],leg:1,lat:49.545,lon:6.367},
-{wd:'zo',d:3,type:'drive',emoji:'🚗',loc:'→Berchtes.',from:'Moezel',to:'Berchtesgaden',km:500,time:'~5u',route:'A1→A3→A8, laadstop Nürnberg',acts:['Roadtrip door Duitsland','Laadstop Nürnberg','Aankomst Beierse Alpen'],tags:['drive','germany','alps'],leg:1,lat:47.555,lon:12.988},
-{wd:'ma',d:4,type:'explore',emoji:'⛵',loc:'Königssee',acts:['Königssee bootje (smaragdgroen meer)','Zwemmen in het meer','St. Bartholomä kerkje'],tags:['explore','lake','boat'],leg:2,lat:47.555,lon:12.988},
-{wd:'di',d:5,type:'explore',emoji:'🥾',loc:'Berchtes.',acts:['Jenner kabelbaan','Watzmann wandelingen','Ramsau bij Berchtesgaden'],tags:['hike','cable car','alps'],leg:2,lat:47.555,lon:12.988},
-{wd:'wo',d:6,type:'drive',emoji:'🚗',loc:'→Salzkam.',from:'Berchtesgaden',to:'Salzkammergut',km:100,time:'~1.5u',route:'B305→A1',acts:['Korte rit','Wolfgangsee zwemmen','Relaxen aan het meer'],tags:['drive','lake','short'],leg:2,lat:47.744,lon:13.386},
-{wd:'do',d:7,type:'explore',emoji:'🏔️',loc:'Salzkam.',acts:['Schafberg tandradtrein','Dachstein 5 Fingers (viewpoint)','Zwemmen in bergmeer'],tags:['explore','mountains','viewpoint'],leg:3,lat:47.744,lon:13.386},
-{wd:'vr',d:8,type:'drive',emoji:'🚗',loc:'→Tatra',from:'Salzkammergut',to:'Hoge Tatra (SK)',km:450,time:'~5u',route:'A1 Wien→D1, laadstop Bratislava',acts:['Roadtrip via Wenen','Laadstop Bratislava','Aankomst Hoge Tatra'],tags:['drive','slovakia','mountains'],leg:3,lat:49.165,lon:20.213},
-{wd:'za',d:9,type:'explore',emoji:'🏔️',loc:'Tatra',acts:['Lomnický štít kabelbaan (2634m!)','Štrbské pleso bergmeer','Panorama Hoge Tatra'],tags:['explore','summit','cable car'],leg:4,lat:49.165,lon:20.213},
-{wd:'zo',d:10,type:'explore',emoji:'🪜',loc:'Slov. Raj',acts:['Suchá Belá gorge (ladders & kettingen!)','Dobšinská ijsgrot','Avontuurlijke kloof-route'],tags:['explore','gorge','adventure'],leg:4,lat:48.888,lon:20.413},
-{wd:'ma',d:11,type:'drive',emoji:'🚗',loc:'→Wachau',from:'Tatra',to:'Wachau/Krems',km:350,time:'~4u',route:'D1→Bratislava→A1/S33',acts:['Roadtrip naar Oostenrijk','Donau zwemmen','Aankomst Wachau'],tags:['drive','austria','river'],leg:4,lat:48.375,lon:15.598},
-{wd:'di',d:12,type:'chill',emoji:'🚲',loc:'Wachau',acts:['Wijngaarden bezoeken','Fietsen langs de Donau','Relaxen'],tags:['chill','wine','cycling'],leg:5,lat:48.375,lon:15.598},
-{wd:'wo',d:13,type:'drive',emoji:'🚗',loc:'→Rijnland',from:'Wachau',to:'Rijnland',km:500,time:'~5.5u',route:'A1→A3, laadstop Nürnberg',acts:['Roadtrip door Duitsland','Laadstop Nürnberg','Aankomst Rijnland'],tags:['drive','germany','return'],leg:5,lat:50.35,lon:7.6},
-{wd:'do',d:14,type:'drive',emoji:'🏠',loc:'→Hove',from:'Rijnland',to:'Hove',km:400,time:'~4u',route:'A3→A4→E314',acts:['Laatste roadtrip-dag','Thuiskomst! 🎉'],tags:['drive','home','return'],leg:6,lat:51.155,lon:4.475},
-{wd:'vr',d:15,type:'chill',emoji:'😴',loc:'Thuis',acts:['Uitpakken','Uitrusten','Vakantie verwerken'],tags:['home','chill','rest'],leg:6}
+{wd:'za',d:1,type:'drive',emoji:'🚗',loc:'Hove→Moezel',from:'Hove',to:'Moezelstreek',km:250,time:'~2.5u',route:'E313→E25',acts:['Korte rit naar Duitsland','Zwemmen in de Moezel','Relaxen aan de rivier'],tags:['drive','river','short'],leg:0,lat:49.545,lon:6.367},
+{wd:'zo',d:2,type:'explore',emoji:'🍷',loc:'Moezel',acts:['Wijngaarden wandelen','Pittoreske dorpjes','Boottochtje op de Moezel'],tags:['explore','wine','boat'],leg:1,lat:49.545,lon:6.367},
+{wd:'ma',d:3,type:'drive',emoji:'🚗',loc:'→Berchtes.',from:'Moezel',to:'Berchtesgaden',km:500,time:'~5u',route:'A1→A3→A8, laadstop Nürnberg',acts:['Roadtrip door Duitsland','Laadstop Nürnberg','Aankomst Beierse Alpen'],tags:['drive','germany','alps'],leg:1,lat:47.555,lon:12.988},
+{wd:'di',d:4,type:'explore',emoji:'⛵',loc:'Königssee',acts:['Königssee bootje (smaragdgroen meer)','Zwemmen in het meer','St. Bartholomä kerkje'],tags:['explore','lake','boat'],leg:2,lat:47.555,lon:12.988},
+{wd:'wo',d:5,type:'explore',emoji:'🥾',loc:'Berchtes.',acts:['Jenner kabelbaan','Watzmann wandelingen','Ramsau bij Berchtesgaden'],tags:['hike','cable car','alps'],leg:2,lat:47.555,lon:12.988},
+{wd:'do',d:6,type:'drive',emoji:'🚗',loc:'→Salzkam.',from:'Berchtesgaden',to:'Salzkammergut',km:100,time:'~1.5u',route:'B305→A1',acts:['Korte rit','Wolfgangsee zwemmen','Relaxen aan het meer'],tags:['drive','lake','short'],leg:2,lat:47.744,lon:13.386},
+{wd:'vr',d:7,type:'explore',emoji:'🏔️',loc:'Salzkam.',acts:['Schafberg tandradtrein','Dachstein 5 Fingers (viewpoint)','Zwemmen in bergmeer'],tags:['explore','mountains','viewpoint'],leg:3,lat:47.744,lon:13.386},
+{wd:'za',d:8,type:'drive',emoji:'🚗',loc:'→Tatra',from:'Salzkammergut',to:'Hoge Tatra (SK)',km:450,time:'~5u',route:'A1 Wien→D1, laadstop Bratislava',acts:['Roadtrip via Wenen','Laadstop Bratislava','Aankomst Hoge Tatra'],tags:['drive','slovakia','mountains'],leg:3,lat:49.165,lon:20.213},
+{wd:'zo',d:9,type:'explore',emoji:'🏔️',loc:'Tatra',acts:['Lomnický štít kabelbaan (2634m!)','Štrbské pleso bergmeer','Panorama Hoge Tatra'],tags:['explore','summit','cable car'],leg:4,lat:49.165,lon:20.213},
+{wd:'ma',d:10,type:'explore',emoji:'🪜',loc:'Slov. Raj',acts:['Suchá Belá gorge (ladders & kettingen!)','Dobšinská ijsgrot','Avontuurlijke kloof-route'],tags:['explore','gorge','adventure'],leg:4,lat:48.888,lon:20.413},
+{wd:'di',d:11,type:'drive',emoji:'🚗',loc:'→Wachau',from:'Tatra',to:'Wachau/Krems',km:350,time:'~4u',route:'D1→Bratislava→A1/S33',acts:['Roadtrip naar Oostenrijk','Donau zwemmen','Aankomst Wachau'],tags:['drive','austria','river'],leg:4,lat:48.375,lon:15.598},
+{wd:'wo',d:12,type:'chill',emoji:'🚲',loc:'Wachau',acts:['Wijngaarden bezoeken','Fietsen langs de Donau','Relaxen'],tags:['chill','wine','cycling'],leg:5,lat:48.375,lon:15.598},
+{wd:'do',d:13,type:'drive',emoji:'🚗',loc:'→Rijnland',from:'Wachau',to:'Rijnland',km:500,time:'~5.5u',route:'A1→A3, laadstop Nürnberg',acts:['Roadtrip door Duitsland','Laadstop Nürnberg','Aankomst Rijnland'],tags:['drive','germany','return'],leg:5,lat:50.35,lon:7.6},
+{wd:'vr',d:14,type:'drive',emoji:'🏠',loc:'→Hove',from:'Rijnland',to:'Hove',km:400,time:'~4u',route:'A3→A4→E314',acts:['Laatste roadtrip-dag','Thuiskomst! 🎉'],tags:['drive','home','return'],leg:6,lat:51.155,lon:4.475},
+{wd:'za',d:15,type:'chill',emoji:'😴',loc:'Thuis',acts:['Uitpakken','Uitrusten','Vakantie verwerken'],tags:['home','chill','rest'],leg:6}
 ];
 
 const COORDS_SP=[[51.155,4.475],[46.160,-1.152],[43.427,-2.783],[43.265,-4.950],[43.421,-4.756],[42.622,-0.111],[42.735,-0.009],[51.155,4.475]];
