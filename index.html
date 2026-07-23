@@ -240,6 +240,8 @@ function renderDays(){
     html+='<ul>'+day.acts.map(function(a){return '<li>'+a+'</li>'}).join('')+'</ul>';
     html+='<div class="tags">'+day.tags.map(function(t){return '<span class="tag">'+t+'</span>'}).join('')+'</div>';
     card.innerHTML=html;
+    card.style.cursor='pointer';
+    card.onclick=function(){window.location.href='day.html?route='+(isHot?'spanje':'slowakije')+'&day='+day.d};
     container.appendChild(card);
   });
 }
