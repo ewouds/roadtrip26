@@ -77,6 +77,7 @@ document.documentElement.style.setProperty('--accent',isHot?'#ff9f48':'#48a9ff')
 var STOPS={
 biarritz:{name:"Biarritz",country:"\ud83c\uddeb\ud83c\uddf7",days:"Dag 1",dates:"vr 1 aug",lat:43.483,lon:-1.558,
   travel:"🚗 Hove → Biarritz (~940 km via Parijs/Bordeaux, hele dag)",
+  mapsUrl:"https://www.google.com/maps/dir/Hove,+Belgium/Biarritz,+France",
   images:[
     {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Grande_Plage_de_Biarritz.jpg/1280px-Grande_Plage_de_Biarritz.jpg",cap:"Grande Plage, Biarritz"},
     {url:"https://upload.wikimedia.org/wikipedia/commons/b/b0/Rocher_de_la_vierge_-_Biarritz.jpg",cap:"Rocher de la Vierge"}
@@ -85,6 +86,7 @@ biarritz:{name:"Biarritz",country:"\ud83c\uddeb\ud83c\uddf7",days:"Dag 1",dates:
   video:null},
 baskenland:{name:"Baskenland",country:"\ud83c\uddea\ud83c\uddf8",days:"Dag 2-3",dates:"za-zo 2-3 aug",lat:43.427,lon:-2.783,
   travel:"🚗 Biarritz → San Sebastián (~50 km, korte rit)",
+  mapsUrl:"https://www.google.com/maps/dir/Biarritz,+France/San+Sebastian,+Spain",
   images:[
     {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Gaztelugache%2C_Bermeo%2C_Pa%C3%ADs_Vasco%2C_Espa%C3%B1a%2C_2019-08-13%2C_DD_14.jpg/1280px-Gaztelugache%2C_Bermeo%2C_Pa%C3%ADs_Vasco%2C_Espa%C3%B1a%2C_2019-08-13%2C_DD_14.jpg",cap:"Gaztelugatxe"},
     {url:"https://upload.wikimedia.org/wikipedia/commons/a/aa/San_Sebastian.Donostia_La_Concha.jpg",cap:"La Concha, San Sebastián"},
@@ -94,6 +96,7 @@ baskenland:{name:"Baskenland",country:"\ud83c\uddea\ud83c\uddf8",days:"Dag 2-3",
   video:"VF_Vr-ccayI"},
 picos:{name:"Picos de Europa",country:"\ud83c\uddea\ud83c\uddf8",days:"Dag 4-5",dates:"ma-di 4-5 aug",lat:43.265,lon:-4.950,
   travel:"🚗 Baskenland → Picos de Europa (~250 km, ochtend)",
+  mapsUrl:"https://www.google.com/maps/dir/San+Sebastian,+Spain/Covadonga,+Spain",
   images:[
     {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Lagos_de_Covadonga%2C2.jpg/1280px-Lagos_de_Covadonga%2C2.jpg",cap:"Lagos de Covadonga"},
     {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Ruta_de_Cares_049.jpg/1280px-Ruta_de_Cares_049.jpg",cap:"Ruta del Cares"},
@@ -103,6 +106,7 @@ picos:{name:"Picos de Europa",country:"\ud83c\uddea\ud83c\uddf8",days:"Dag 4-5",
   video:"93V9wkHHTZ0"},
 llanes:{name:"Llanes & Kust",country:"\ud83c\uddea\ud83c\uddf8",days:"Dag 6-7",dates:"wo-do 6-7 aug",lat:43.421,lon:-4.756,
   travel:"🚗 Picos → Llanes kust (~60 km, korte rit)",
+  mapsUrl:"https://www.google.com/maps/dir/Covadonga,+Spain/Llanes,+Spain",
   images:[
     {url:"https://upload.wikimedia.org/wikipedia/commons/8/8f/Gulpiyuri.jpg",cap:"Playa de Gulpiyuri"},
     {url:"https://upload.wikimedia.org/wikipedia/commons/e/e7/Asturias_playa_de_Torimbia_4_wikicommons_2.jpg",cap:"Playa de Torimbia"}
@@ -111,6 +115,7 @@ llanes:{name:"Llanes & Kust",country:"\ud83c\uddea\ud83c\uddf8",days:"Dag 6-7",d
   video:null},
 ordesa:{name:"Ordesa & Monte Perdido",country:"\ud83c\uddea\ud83c\uddf8",days:"Dag 9-10",dates:"za-zo 9-10 aug",lat:42.622,lon:-0.111,
   travel:"🚗 Llanes → Ordesa via Aínsa (~300 km, ochtend)",
+  mapsUrl:"https://www.google.com/maps/dir/Llanes,+Spain/Torla,+Spain",
   images:[
     {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Ordesa_ca%C3%B1on.jpg/1280px-Ordesa_ca%C3%B1on.jpg",cap:"Ordesa-vallei"},
     {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/2012-10-04_Ordesa_cascada_cola_de_Caballo%2C_Goriz_-_WLE_Spain_2015.jpg/1280px-2012-10-04_Ordesa_cascada_cola_de_Caballo%2C_Goriz_-_WLE_Spain_2015.jpg",cap:"Cola de Caballo waterval"}
@@ -119,6 +124,7 @@ ordesa:{name:"Ordesa & Monte Perdido",country:"\ud83c\uddea\ud83c\uddf8",days:"D
   video:"Q5pASf6M1_Y"},
 gavarnie:{name:"Cirque de Gavarnie",country:"\ud83c\uddeb\ud83c\uddf7",days:"Dag 11-12",dates:"ma-di 11-12 aug",lat:42.735,lon:-0.009,
   travel:"🚗 Ordesa → Gavarnie via Bielsa tunnel (~80 km)",
+  mapsUrl:"https://www.google.com/maps/dir/Torla,+Spain/Gavarnie,+France",
   images:[
     {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Cirque_de_Gavarnie%2C_Haute-Pyr%C3%A9n%C3%A9es%2C_France.jpg/1280px-Cirque_de_Gavarnie%2C_Haute-Pyr%C3%A9n%C3%A9es%2C_France.jpg",cap:"Cirque de Gavarnie"},
     {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Cauterets_cascade_du_pont_d%27Espagne_%285%29.JPG/1280px-Cauterets_cascade_du_pont_d%27Espagne_%285%29.JPG",cap:"Pont d'Espagne, Cauterets"}
@@ -127,6 +133,7 @@ gavarnie:{name:"Cirque de Gavarnie",country:"\ud83c\uddeb\ud83c\uddf7",days:"Dag
   video:"Q5pASf6M1_Y"},
 moezel:{name:"Moezelstreek",country:"\ud83c\udde9\ud83c\uddea",days:"Dag 2-3",dates:"za-zo 2-3 aug",lat:49.545,lon:6.367,
   travel:"🚗 België → Moezel (~250 km, ochtend)",
+  mapsUrl:"https://www.google.com/maps/dir/Hove,+Belgium/Bernkastel-Kues,+Germany",
   images:[
     {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Vineyard_by_the_Mosel_jun_2018_%281%29.jpg/1280px-Vineyard_by_the_Mosel_jun_2018_%281%29.jpg",cap:"Wijngaarden bij Bremm"},
     {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Cochem%2C_Reichsburg%2C_2012-08_CN-01.jpg/1280px-Cochem%2C_Reichsburg%2C_2012-08_CN-01.jpg",cap:"Reichsburg Cochem"},
@@ -136,6 +143,7 @@ moezel:{name:"Moezelstreek",country:"\ud83c\udde9\ud83c\uddea",days:"Dag 2-3",da
   video:null},
 berchtesgaden:{name:"Berchtesgaden",country:"\ud83c\udde9\ud83c\uddea",days:"Dag 4-5",dates:"ma-di 4-5 aug",lat:47.555,lon:12.988,
   travel:"🚗 Moezel → Berchtesgaden (~600 km, hele dag rijden)",
+  mapsUrl:"https://www.google.com/maps/dir/Bernkastel-Kues,+Germany/Berchtesgaden,+Germany",
   images:[
     {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Lago_del_Rey%2C_Alemania%2C_2019-05-17%2C_DD_25.jpg/1280px-Lago_del_Rey%2C_Alemania%2C_2019-05-17%2C_DD_25.jpg",cap:"Königssee"},
     {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Ramsau_bei_Berchtesgaden_%28DE%29%2C_Hochkalter_vom_Hintersee_--_2024_--_0541.jpg/1280px-Ramsau_bei_Berchtesgaden_%28DE%29%2C_Hochkalter_vom_Hintersee_--_2024_--_0541.jpg",cap:"Hintersee, Ramsau"},
@@ -145,6 +153,7 @@ berchtesgaden:{name:"Berchtesgaden",country:"\ud83c\udde9\ud83c\uddea",days:"Dag
   video:"OL6TeMIrLdI"},
 salzkammergut:{name:"Salzkammergut",country:"\ud83c\udde6\ud83c\uddf9",days:"Dag 6-7",dates:"wo-do 6-7 aug",lat:47.744,lon:13.386,
   travel:"🚗 Berchtesgaden → Salzkammergut (~80 km, korte rit)",
+  mapsUrl:"https://www.google.com/maps/dir/Berchtesgaden,+Germany/St.+Wolfgang,+Austria",
   images:[
     {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Hallstatt_at_Lake_Hallstatt_-_2.jpg/1280px-Hallstatt_at_Lake_Hallstatt_-_2.jpg",cap:"Hallstatt"},
     {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/SalzkammergutLandscape.jpg/1280px-SalzkammergutLandscape.jpg",cap:"Wolfgangsee"},
@@ -154,6 +163,7 @@ salzkammergut:{name:"Salzkammergut",country:"\ud83c\udde6\ud83c\uddf9",days:"Dag
   video:null},
 tatra:{name:"Hoge Tatra",country:"\ud83c\uddf8\ud83c\uddf0",days:"Dag 9-10",dates:"za-zo 9-10 aug",lat:49.165,lon:20.213,
   travel:"🚗 Salzkammergut → Hoge Tatra (~450 km, ochtend)",
+  mapsUrl:"https://www.google.com/maps/dir/St.+Wolfgang,+Austria/Strbske+Pleso,+Slovakia",
   images:[
     {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/High_Tatra_Mountains_from_%C5%A0trba.jpg/1280px-High_Tatra_Mountains_from_%C5%A0trba.jpg",cap:"Hoge Tatra vanuit Štrbské Pleso"},
     {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Lomnick%C3%BD_%C5%A1t%C3%ADt%2C_Vysok%C3%A9_Tatry.JPG/1280px-Lomnick%C3%BD_%C5%A1t%C3%ADt%2C_Vysok%C3%A9_Tatry.JPG",cap:"Lomnický štít"}
@@ -162,6 +172,7 @@ tatra:{name:"Hoge Tatra",country:"\ud83c\uddf8\ud83c\uddf0",days:"Dag 9-10",date
   video:"x1YiJgA8lpw"},
 wachau:{name:"Wachau & Donau",country:"\ud83c\udde6\ud83c\uddf9",days:"Dag 11-12",dates:"ma-di 11-12 aug",lat:48.375,lon:15.598,
   travel:"🚗 Hoge Tatra → Wachau (~400 km, ochtend)",
+  mapsUrl:"https://www.google.com/maps/dir/Strbske+Pleso,+Slovakia/Durnstein,+Austria",
   images:[
     {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Ruine_Aggstein_20180527.jpg/1280px-Ruine_Aggstein_20180527.jpg",cap:"Burgruine Aggstein"},
     {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/D%C3%BCrnstein_Panorama_02.jpg/1280px-D%C3%BCrnstein_Panorama_02.jpg",cap:"Donauradweg bij Dürnstein"}
@@ -203,7 +214,8 @@ stop.images.forEach(function(img,idx){
 var acts=document.getElementById('acts');
 if(stop.travel){
   var td=document.createElement('div');td.className='activity';
-  td.innerHTML='<div class="aname">🚗 Reisdag</div><div class="adesc">'+stop.travel.replace(/^🚗\s*/,'')+'</div>';
+  var mapsLink=stop.mapsUrl?'<a href="'+stop.mapsUrl+'" target="_blank" style="color:var(--accent);font-size:.8rem;margin-left:8px">📍 Route in Google Maps</a>':'';
+  td.innerHTML='<div class="aname">🚗 Reisdag'+mapsLink+'</div><div class="adesc">'+stop.travel.replace(/^🚗\s*/,'')+'</div>';
   acts.appendChild(td);
 }
 stop.activities.forEach(function(a){
