@@ -71,8 +71,16 @@ var isHot=route==='spanje';
 document.documentElement.style.setProperty('--accent',isHot?'#ff9f48':'#48a9ff');
 
 var STOPS={
+biarritz:{name:"Biarritz",country:"\ud83c\uddeb\ud83c\uddf7",days:"Dag 1",dates:"vr 1 aug",lat:43.483,lon:-1.558,
+  travel:"🚗 Hove → Biarritz (~940 km via Parijs/Bordeaux, hele dag)",
+  images:[
+    {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Grande_Plage_de_Biarritz.jpg/1280px-Grande_Plage_de_Biarritz.jpg",cap:"Grande Plage, Biarritz"},
+    {url:"https://upload.wikimedia.org/wikipedia/commons/b/b0/Rocher_de_la_vierge_-_Biarritz.jpg",cap:"Rocher de la Vierge"}
+  ],
+  activities:["Grande Plage - Iconisch stadsstrand met art-deco casino","Rocher de la Vierge - Rotspunt met voetgangersbrug over de branding","Port des Pêcheurs - Gezellig haventje met terrasjes","Surfen of relaxen aan de kust"],
+  video:null},
 baskenland:{name:"Baskenland",country:"\ud83c\uddea\ud83c\uddf8",days:"Dag 2-3",dates:"za-zo 2-3 aug",lat:43.427,lon:-2.783,
-  travel:"🚗 Vanuit België → Baskenland (~900 km, ochtend vertrek)",
+  travel:"🚗 Biarritz → San Sebastián (~50 km, korte rit)",
   images:[
     {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Gaztelugache%2C_Bermeo%2C_Pa%C3%ADs_Vasco%2C_Espa%C3%B1a%2C_2019-08-13%2C_DD_14.jpg/1280px-Gaztelugache%2C_Bermeo%2C_Pa%C3%ADs_Vasco%2C_Espa%C3%B1a%2C_2019-08-13%2C_DD_14.jpg",cap:"Gaztelugatxe"},
     {url:"https://upload.wikimedia.org/wikipedia/commons/a/aa/San_Sebastian.Donostia_La_Concha.jpg",cap:"La Concha, San Sebastián"},
