@@ -90,7 +90,7 @@ footer a{color:var(--accent);text-decoration:none}
 <div class="tips" id="tips"></div>
 </div>
 
-<footer>Roadtrip 2026 · Gezin Smets-Gegg · aug 2026<br>Gemaakt door <a href="https://github.com/ewouds/roadtrip26">Koda 🐾</a> · <span style="opacity:.6">v20260723.15</span></footer>
+<footer>Roadtrip 2026 · Gezin Smets-Gegg · aug 2026<br>Gemaakt door <a href="https://github.com/ewouds/roadtrip26">Koda 🐾</a> · <span style="opacity:.6">v20260723.16</span></footer>
 
 <div class="fab" id="fab" onclick="toggle()"></div>
 
@@ -227,7 +227,6 @@ function wmoIcon(code){
 
 function fetchCalWeather(){
   var d=days();
-  // Group unique lat/lon
   var locs={};
   d.forEach((day,i)=>{
     if(!day.lat) return;
@@ -235,15 +234,30 @@ function fetchCalWeather(){
     if(!locs[key]) locs[key]={lat:day.lat,lon:day.lon,indices:[]};
     locs[key].indices.push(i);
   });
-  // We use the start date (Aug 1 2026) to map day numbers to forecast days
+  // Try real dates first (Aug 2026), fallback to today+N for preview
   var startDate=new Date('2026-08-01');
+  var today=new Date();
+  var daysUntil=Math.round((startDate-today)/(86400000));
+  var useFallback=daysUntil>14;
   Object.values(locs).forEach(loc=>{
-    var url='https://api.open-meteo.com/v1/forecast?latitude='+loc.lat+'&longitude='+loc.lon+'&daily=temperature_2m_max,weathercode&timezone=auto&forecast_days=16&start_date=2026-08-01';
+    var url;
+    if(useFallback){
+      // Use today's forecast as preview (same day-of-trip offset from today)
+      url='https://api.open-meteo.com/v1/forecast?latitude='+loc.lat+'&longitude='+loc.lon+'&daily=temperature_2m_max,weathercode&timezone=auto&forecast_days=16';
+    } else {
+      url='https://api.open-meteo.com/v1/forecast?latitude='+loc.lat+'&longitude='+loc.lon+'&daily=temperature_2m_max,weathercode&timezone=auto&forecast_days=16&start_date=2026-08-01';
+    }
     fetch(url).then(r=>r.json()).then(data=>{
       if(!data.daily) return;
       loc.indices.forEach(i=>{
         var day=d[i];
-        var dayIdx=day.d-1; // dag 1 = index 0
+        var dayIdx;
+        if(useFallback){
+          // Map trip day to forecast day (day 1=index 0, cap at available)
+          dayIdx=Math.min(day.d-1, data.daily.time.length-1);
+        } else {
+          dayIdx=day.d-1;
+        }
         if(dayIdx>=0 && dayIdx<data.daily.time.length){
           day._weather=wmoIcon(data.daily.weathercode[dayIdx])+' '+Math.round(data.daily.temperature_2m_max[dayIdx])+String.fromCharCode(176);
         }
