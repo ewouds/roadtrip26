@@ -85,7 +85,7 @@ var isHot=route==='spanje';
 document.documentElement.style.setProperty('--accent',isHot?'#ff9f48':'#48a9ff');
 
 var STOPS={
-biarritz:{name:"La Rochelle",country:"\ud83c\uddeb\ud83c\uddf7",days:"Dag 1",dates:"vr 1 aug",lat:46.160,lon:-1.152,
+larochelle:{name:"La Rochelle",country:"\ud83c\uddeb\ud83c\uddf7",days:"Dag 1",dates:"vr 1 aug",lat:46.160,lon:-1.152,
   travel:"🚗 Hove → La Rochelle (~640 km, ochtend vertrek)",
   mapsUrl:"https://www.google.com/maps/dir/Hove,+Belgium/La+Rochelle,+France",
   images:[
@@ -93,18 +93,9 @@ biarritz:{name:"La Rochelle",country:"\ud83c\uddeb\ud83c\uddf7",days:"Dag 1",dat
   ],
   activities:["Vieux-Port - Historische haven met middeleeuwse torens","Aquarium La Rochelle - Een van de grootste van Europa","Wandelen door de arcades in de oude stad","Overnachting in La Rochelle"],
   video:null},
-biarritz2:{name:"Biarritz",country:"\ud83c\uddeb\ud83c\uddf7",days:"Dag 2",dates:"za 2 aug",lat:43.483,lon:-1.558,
-  travel:"🚗 La Rochelle → Biarritz (~350 km, ochtend)",
-  mapsUrl:"https://www.google.com/maps/dir/La+Rochelle,+France/Biarritz,+France",
-  images:[
-    {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Grande_Plage_de_Biarritz.jpg/1280px-Grande_Plage_de_Biarritz.jpg",cap:"Grande Plage, Biarritz"},
-    {url:"https://upload.wikimedia.org/wikipedia/commons/b/b0/Rocher_de_la_vierge_-_Biarritz.jpg",cap:"Rocher de la Vierge"}
-  ],
-  activities:["Grande Plage - Iconisch stadsstrand met art-deco casino","Rocher de la Vierge - Rotspunt met voetgangersbrug over de branding","Port des Pêcheurs - Gezellig haventje met terrasjes","Surfen of relaxen aan de kust"],
-  video:null},
-baskenland:{name:"Baskenland",country:"\ud83c\uddea\ud83c\uddf8",days:"Dag 3-4",dates:"zo-ma 3-4 aug",lat:43.427,lon:-2.783,
-  travel:"🚗 Biarritz → San Sebastián (~50 km, korte rit)",
-  mapsUrl:"https://www.google.com/maps/dir/Biarritz,+France/San+Sebastian,+Spain",
+baskenland:{name:"Baskenland",country:"\ud83c\uddea\ud83c\uddf8",days:"Dag 2-3",dates:"za-zo 2-3 aug",lat:43.427,lon:-2.783,
+  travel:"🚗 La Rochelle → San Sebastián (~460 km, via Biarritz voor lunch)",
+  mapsUrl:"https://www.google.com/maps/dir/La+Rochelle,+France/Biarritz,+France/San+Sebastian,+Spain",
   images:[
     {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Gaztelugache%2C_Bermeo%2C_Pa%C3%ADs_Vasco%2C_Espa%C3%B1a%2C_2019-08-13%2C_DD_14.jpg/1280px-Gaztelugache%2C_Bermeo%2C_Pa%C3%ADs_Vasco%2C_Espa%C3%B1a%2C_2019-08-13%2C_DD_14.jpg",cap:"Gaztelugatxe"},
     {url:"https://upload.wikimedia.org/wikipedia/commons/a/aa/San_Sebastian.Donostia_La_Concha.jpg",cap:"La Concha, San Sebastián"},
@@ -112,7 +103,7 @@ baskenland:{name:"Baskenland",country:"\ud83c\uddea\ud83c\uddf8",days:"Dag 3-4",
   ],
   activities:["Gaztelugatxe - Game of Thrones eiland, 241 treden naar de hermitage","San Sebasti\u00e1n - Pintxos in de oude stad, La Concha strand","Zwemmen in de Golf van Biskaje"],
   video:"VF_Vr-ccayI"},
-picos:{name:"Picos de Europa",country:"\ud83c\uddea\ud83c\uddf8",days:"Dag 5-6",dates:"di-wo 5-6 aug",lat:43.265,lon:-4.950,
+picos:{name:"Picos de Europa",country:"\ud83c\uddea\ud83c\uddf8",days:"Dag 4-5",dates:"di-wo 4-5 aug",lat:43.265,lon:-4.950,
   travel:"🚗 Baskenland → Picos de Europa (~250 km, ochtend)",
   mapsUrl:"https://www.google.com/maps/dir/San+Sebastian,+Spain/Covadonga,+Spain",
   images:[
@@ -122,7 +113,7 @@ picos:{name:"Picos de Europa",country:"\ud83c\uddea\ud83c\uddf8",days:"Dag 5-6",
   ],
   activities:["Lagos de Covadonga - Smaragdgroene bergmeren op 1000m","Ruta del Cares - Spectaculaire 12km kloofwandeling","Fuente D\u00e9 kabelbaan - In 4 min naar 1800m hoogte","Bergdorpjes verkennen"],
   video:"93V9wkHHTZ0"},
-llanes:{name:"Llanes & Kust",country:"\ud83c\uddea\ud83c\uddf8",days:"Dag 7-8",dates:"do-vr 7-8 aug",lat:43.421,lon:-4.756,
+llanes:{name:"Llanes & Kust",country:"\ud83c\uddea\ud83c\uddf8",days:"Dag 6-7",dates:"do-vr 6-7 aug",lat:43.421,lon:-4.756,
   travel:"🚗 Picos → Llanes kust (~60 km, korte rit)",
   mapsUrl:"https://www.google.com/maps/dir/Covadonga,+Spain/Llanes,+Spain",
   images:[
@@ -203,7 +194,7 @@ var stop=STOPS[stopId];
 if(!stop){document.body.innerHTML='<p style="padding:40px;text-align:center">Stop niet gevonden. <a href="index.html" style="color:var(--accent)">Terug</a></p>';throw new Error('stop not found')}
 
 // Navigation
-var spStops=['biarritz','biarritz2','baskenland','picos','llanes','ordesa','gavarnie'];
+var spStops=['larochelle','baskenland','picos','llanes','ordesa','gavarnie'];
 var ooStops=['moezel','berchtesgaden','salzkammergut','tatra','wachau'];
 var routeStops=isHot?spStops:ooStops;
 var currentIdx=routeStops.indexOf(stopId);
@@ -214,7 +205,7 @@ function navCard(id){
   var s=STOPS[id];
   var dayNum=s.days.replace(/Dag\s*/,'').split('-')[0];
   var dateStr=s.dates.split(' ')[0];
-  var emojis={biarritz:'⚓',biarritz2:'🏖️',baskenland:'🍽️',picos:'🏔️',llanes:'🌊',ordesa:'🪷',gavarnie:'⛰️',moezel:'🍷',berchtesgaden:'🚣',salzkammergut:'🚂',tatra:'⛓️',wachau:'🚴'};
+  var emojis={larochelle:'⚓',baskenland:'🍽️',picos:'🏔️',llanes:'🌊',ordesa:'🪷',gavarnie:'⛰️',moezel:'🍷',berchtesgaden:'🚣',salzkammergut:'🚂',tatra:'⛓️',wachau:'🚴'};
   var emoji=emojis[id]||'🏔️';
   return '<a href="day.html?route='+route+'&stop='+id+'"'+(s.travel?' class="drive"':'')+'><div class="wd">'+dateStr+'</div><div class="dn">'+dayNum+'</div><div class="em">'+emoji+'</div><div class="loc">→'+s.name+'</div></a>';
 }

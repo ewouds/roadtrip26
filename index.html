@@ -97,7 +97,7 @@ footer a{color:var(--accent);text-decoration:none}
 <script>
 const SPANJE=[
 {wd:'vr',d:1,type:'drive',emoji:'🚗',loc:'Hove→La Rochelle',from:'Hove',to:'La Rochelle',km:640,time:'~6.5u',route:'A-wegen via Parijs',acts:['Roadtrip dag 1','Aankomst La Rochelle eind namiddag','Vieux-Port & oude stad verkennen'],tags:['drive','france','coast'],leg:0},
-{wd:'za',d:2,type:'drive',emoji:'🚗',loc:'La Rochelle→Biarritz',from:'La Rochelle',to:'Biarritz',km:350,time:'~3.5u',route:'Via Bordeaux/A63',acts:['Ochtend vertrek','Optioneel stop Bordeaux','Biarritz strand namiddag'],tags:['drive','france','coast'],leg:0},
+{wd:'za',d:2,type:'drive',emoji:'🚗',loc:'La Rochelle→Baskenland',from:'La Rochelle',to:'San Sebastián',km:460,time:'~4.5u',route:'Via Biarritz (lunchstop)',acts:['Ochtend vertrek','Lunchstop Biarritz','Aankomst San Sebastián namiddag'],tags:['drive','france','coast'],leg:0},
 {wd:'zo',d:3,type:'explore',emoji:'🏖️',loc:'Baskenland',acts:['Gaztelugatxe (Game of Thrones eiland)','San Sebastián oude stad + pintxos','Zwemmen Golf van Biskaje'],tags:['explore','coast','culture'],leg:1},
 {wd:'zo',d:3,type:'drive',emoji:'🚗',loc:'→Picos',from:'Baskenland',to:'Picos de Europa',km:300,time:'~3.5u',route:'Kustweg A8 langs Cantabrische zee',acts:['Kustroute met uitzichtpunten','Aankomst Picos de Europa'],tags:['drive','coast'],leg:1},
 {wd:'ma',d:4,type:'explore',emoji:'🥾',loc:'Picos',acts:['Lagos de Covadonga (bergmeren)','Korte wandelingen rond de meren','Bergdorpjes verkennen'],tags:['hike','mountains','lakes'],leg:2},
@@ -131,9 +131,9 @@ const SLOWAKIJE=[
 {wd:'vr',d:15,type:'chill',emoji:'😴',loc:'Thuis',acts:['Uitpakken','Uitrusten','Vakantie verwerken'],tags:['home','chill','rest'],leg:6}
 ];
 
-const COORDS_SP=[[51.155,4.475],[46.160,-1.152],[43.483,-1.558],[43.427,-2.783],[43.265,-4.950],[43.421,-4.756],[42.622,-0.111],[42.735,-0.009],[51.155,4.475]];
+const COORDS_SP=[[51.155,4.475],[46.160,-1.152],[43.427,-2.783],[43.265,-4.950],[43.421,-4.756],[42.622,-0.111],[42.735,-0.009],[51.155,4.475]];
 const COORDS_SK=[[51.155,4.475],[49.545,6.367],[47.555,12.988],[47.744,13.386],[49.165,20.213],[48.375,15.598],[50.35,7.6],[51.155,4.475]];
-const LABELS_SP=['Hove','La Rochelle','Biarritz','Baskenland','Picos','Llanes','Ordesa','Gavarnie','Hove'];
+const LABELS_SP=['Hove','La Rochelle','Baskenland','Picos','Llanes','Ordesa','Gavarnie','Hove'];
 const LABELS_SK=['Hove','Moezel','Berchtesgaden','Salzkammergut','Hoge Tatra','Wachau','Rijnland','Hove'];
 
 const TIPS_SP='<li>Gebruik ABRP voor laadplanning</li><li>Noordkust Spanje is fris (18-24°C) — perfect!</li><li>Vroeg boeken: Picos & Ordesa accommodatie</li><li>Wandelschoenen mee (Ruta del Cares, Ordesa)</li><li>Flexibel blijven — weer in de bergen wisselt</li>';
@@ -241,7 +241,7 @@ function renderDays(){
     html+='<ul>'+day.acts.map(function(a){return '<li>'+a+'</li>'}).join('')+'</ul>';
     html+='<div class="tags">'+day.tags.map(function(t){return '<span class="tag">'+t+'</span>'}).join('')+'</div>';
     card.innerHTML=html;
-    var stopMap=isHot?{1:'biarritz',2:'biarritz2',3:'baskenland',4:'baskenland',5:'picos',6:'picos',7:'llanes',8:'llanes',9:'ordesa',10:'ordesa',11:'gavarnie',12:'gavarnie',13:'gavarnie',14:'gavarnie'}:{1:'moezel',2:'moezel',3:'berchtesgaden',4:'berchtesgaden',5:'berchtesgaden',6:'salzkammergut',7:'salzkammergut',8:'tatra',9:'tatra',10:'tatra',11:'wachau',12:'wachau',13:'wachau',14:'wachau'};
+    var stopMap=isHot?{1:'larochelle',2:'baskenland',3:'baskenland',4:'picos',5:'picos',6:'llanes',7:'llanes',8:'ordesa',9:'ordesa',10:'ordesa',11:'gavarnie',12:'gavarnie',13:'gavarnie',14:'gavarnie'}:{1:'moezel',2:'moezel',3:'berchtesgaden',4:'berchtesgaden',5:'berchtesgaden',6:'salzkammergut',7:'salzkammergut',8:'tatra',9:'tatra',10:'tatra',11:'wachau',12:'wachau',13:'wachau',14:'wachau'};
     var stopId=stopMap[day.d];
     if(stopId){card.style.cursor='pointer';card.onclick=function(){window.location.href='day.html?route='+(isHot?'spanje':'slowakije')+'&stop='+stopId};}else{card.style.cursor='default';}
     container.appendChild(card);
@@ -271,7 +271,7 @@ function render(){
   document.documentElement.style.setProperty('--accent',accent());
   document.getElementById('kicker').textContent=isHot?'Route A — Vuur & bergen':'Route B — Bergen & meren';
   document.getElementById('title').textContent=isHot?'Noord-Spanje':'Slowakije & Alpen';
-  document.getElementById('sub').textContent=isHot?'La Rochelle • Biarritz • Baskenland • Picos de Europa • Ordesa • Pyreneeën':'Moezel • Berchtesgaden • Salzkammergut • Hoge Tatra • Wachau';
+  document.getElementById('sub').textContent=isHot?'La Rochelle • Baskenland • Picos de Europa • Ordesa • Pyreneeën':'Moezel • Berchtesgaden • Salzkammergut • Hoge Tatra • Wachau';
   var km=isHot?3400:2700,stops=isHot?6:5,landen=isHot?2:5;
   document.getElementById('stats').innerHTML='<div class="stat"><div class="val">15</div><div class="lbl">Dagen</div></div><div class="stat"><div class="val">'+km+'</div><div class="lbl">Kilometer</div></div><div class="stat"><div class="val">'+stops+'</div><div class="lbl">Stops</div></div><div class="stat"><div class="val">'+landen+'</div><div class="lbl">Landen</div></div>';
   document.getElementById('tips').innerHTML='<h2>💡 Tips</h2><ul>'+(isHot?TIPS_SP:TIPS_SK)+'</ul>';
