@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Roadtrip 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
 :root{--bg:#0f1729;--surface:#1a2340;--card:#212d4a;--text:#e8eaf0;--muted:#8892a8;--accent:#ff9f48;--radius:12px;--font-head:'Bebas Neue',sans-serif;--font-body:'Inter',sans-serif}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -35,6 +37,9 @@ h1,h2,h3{font-family:var(--font-head);letter-spacing:1px}
 .activity:last-child{border:none}
 .activity .aname{font-weight:700;font-size:.95rem;margin-bottom:4px}
 .activity .adesc{font-size:.82rem;color:var(--muted)}
+.map-section{margin:24px 16px;background:var(--card);border-radius:var(--radius);padding:20px;overflow:hidden}
+.map-section h2{font-family:var(--font-head);font-size:1.3rem;margin-bottom:14px;color:var(--accent);letter-spacing:1px}
+#map{height:200px;border-radius:var(--radius);z-index:0}
 .video-wrap{margin:24px 16px;border-radius:var(--radius);overflow:hidden;aspect-ratio:16/9}
 .video-wrap iframe{width:100%;height:100%;border:none}
 .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;display:none;flex-direction:column;align-items:center;justify-content:center;padding:16px;cursor:zoom-out}
@@ -54,6 +59,7 @@ h1,h2,h3{font-family:var(--font-head);letter-spacing:1px}
 </div>
 <div class="weather container" id="weather">Weer laden...</div>
 <div class="gallery-wrap"><div class="gallery" id="gallery"></div></div>
+<div class="container"><div class="map-section"><h2>📍 Locatie</h2><div id="map"></div></div></div>
 <div class="container"><div class="section" id="activities"><h2>🎯 Activiteiten</h2><div id="acts"></div></div></div>
 <div class="container"><div class="video-wrap" id="video-wrap" style="display:none"></div></div>
 
@@ -197,6 +203,12 @@ if(stop.video){
   vw.style.display='block';
   vw.innerHTML='<iframe src="https://www.youtube.com/embed/'+stop.video+'?rel=0" allowfullscreen loading="lazy"></iframe>';
 }
+
+// Map
+var map=L.map('map',{scrollWheelZoom:false}).setView([stop.lat,stop.lon],10);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OSM'}).addTo(map);
+L.marker([stop.lat,stop.lon]).addTo(map).bindPopup('<b>'+stop.name+'</b>');
+setTimeout(function(){map.invalidateSize()},200);
 
 // Weather
 function wmoIcon(code){
