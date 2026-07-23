@@ -19,8 +19,9 @@ h1,h2,h3{font-family:var(--font-head);letter-spacing:1px}
 .hero .flag{font-size:2.5rem;font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif}
 .hero h1{font-size:clamp(2rem,5vw,3rem);line-height:1.1;margin:8px 0 4px}
 .hero .sub{color:var(--muted);font-size:.9rem}
-.weather{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;padding:16px 0;margin:0 16px}
-.weather-day{background:var(--card);border-radius:var(--radius);padding:12px 16px;text-align:center;min-width:90px}
+.weather{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;padding:16px 0;margin:0 auto;max-width:900px}
+.weather-day{background:var(--card);border-radius:var(--radius);padding:12px 16px;text-align:center;min-width:90px;cursor:pointer;transition:.2s;text-decoration:none;color:inherit}
+.weather-day:hover{background:var(--surface);transform:scale(1.05)}
 .weather-day .wicon{font-size:1.8rem}
 .weather-day .wtemp{font-size:1.1rem;font-weight:700;margin:4px 0}
 .weather-day .wlabel{font-size:.7rem;color:var(--muted);text-transform:uppercase}
@@ -247,10 +248,11 @@ function wmoIcon(code){
 var wUrl='https://api.open-meteo.com/v1/forecast?latitude='+stop.lat+'&longitude='+stop.lon+'&current=temperature_2m,weathercode&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto&forecast_days=3';
 fetch(wUrl).then(function(r){return r.json()}).then(function(d){
   var html='';
-  html+='<div class="weather-day"><div class="wlabel">Nu</div><div class="wicon">'+wmoIcon(d.current.weathercode)+'</div><div class="wtemp">'+Math.round(d.current.temperature_2m)+'\u00b0C</div></div>';
+  var msnBase='https://www.msn.com/en-us/weather/forecast/in-'+encodeURIComponent(stop.name);
+  html+='<a class="weather-day" href="'+msnBase+'" target="_blank"><div class="wlabel">Nu</div><div class="wicon">'+wmoIcon(d.current.weathercode)+'</div><div class="wtemp">'+Math.round(d.current.temperature_2m)+'\u00b0C</div></a>';
   for(var i=0;i<d.daily.time.length;i++){
     var day=new Date(d.daily.time[i]).toLocaleDateString('nl',{weekday:'short'});
-    html+='<div class="weather-day"><div class="wlabel">'+day+'</div><div class="wicon">'+wmoIcon(d.daily.weathercode[i])+'</div><div class="wtemp">'+Math.round(d.daily.temperature_2m_max[i])+'\u00b0 / '+Math.round(d.daily.temperature_2m_min[i])+'\u00b0</div></div>';
+    html+='<a class="weather-day" href="'+msnBase+'" target="_blank"><div class="wlabel">'+day+'</div><div class="wicon">'+wmoIcon(d.daily.weathercode[i])+'</div><div class="wtemp">'+Math.round(d.daily.temperature_2m_max[i])+'\u00b0 / '+Math.round(d.daily.temperature_2m_min[i])+'\u00b0</div></a>';
   }
   document.getElementById('weather').innerHTML=html;
 }).catch(function(){document.getElementById('weather').innerHTML='<span style="color:var(--muted)">Weer niet beschikbaar</span>'});
