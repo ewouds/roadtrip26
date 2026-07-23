@@ -24,7 +24,8 @@ h1,h2,h3{font-family:var(--font-head);letter-spacing:1px}
 .day-nav .loc{font-size:.6rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:70px}
 .day-nav a.drive::after{content:'';position:absolute;bottom:4px;left:20%;right:20%;height:3px;border-radius:2px;background:var(--accent)}
 .hero{text-align:center;padding:12px 16px 16px}
-.hero .flag{font-size:2.5rem;font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif}
+.hero .flag{font-size:2.5rem}
+.hero .flag img{height:40px;vertical-align:middle}
 .hero h1{font-size:clamp(2rem,5vw,3rem);line-height:1.1;margin:8px 0 4px}
 .hero .sub{color:var(--muted);font-size:.9rem}
 .weather{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;padding:16px 0;margin:0 auto;max-width:900px}
@@ -225,7 +226,9 @@ if(nextStop){navHtml+=navCard(nextStop,!!STOPS[nextStop].travel);}
 navEl.innerHTML=navHtml;
 
 document.title='Roadtrip 2026 \u2013 '+stop.name;
-document.getElementById('flag').textContent=stop.country;
+var flagCodes={'\ud83c\uddeb\ud83c\uddf7':'fr','\ud83c\uddea\ud83c\uddf8':'es','\ud83c\udde9\ud83c\uddea':'de','\ud83c\udde6\ud83c\uddf9':'at','\ud83c\uddf8\ud83c\uddf0':'sk'};
+var cc=flagCodes[stop.country]||'fr';
+document.getElementById('flag').innerHTML='<img src="https://flagcdn.com/w80/'+cc+'.png" alt="'+cc+'">';
 document.getElementById('title').textContent=stop.name;
 document.getElementById('sub').textContent=stop.days+' \u2022 '+stop.dates+' 2026';
 
