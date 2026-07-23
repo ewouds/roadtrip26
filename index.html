@@ -240,8 +240,9 @@ function renderDays(){
     html+='<ul>'+day.acts.map(function(a){return '<li>'+a+'</li>'}).join('')+'</ul>';
     html+='<div class="tags">'+day.tags.map(function(t){return '<span class="tag">'+t+'</span>'}).join('')+'</div>';
     card.innerHTML=html;
-    card.style.cursor='pointer';
-    card.onclick=function(){window.location.href='day.html?route='+(isHot?'spanje':'slowakije')+'&day='+day.d};
+    var stopMap=isHot?{2:'baskenland',4:'picos',5:'picos',7:'llanes',9:'ordesa',10:'ordesa',12:'gavarnie'}:{2:'moezel',4:'berchtesgaden',5:'berchtesgaden',7:'salzkammergut',9:'tatra',10:'tatra',12:'wachau'};
+    var stopId=stopMap[day.d];
+    if(stopId){card.style.cursor='pointer';card.onclick=function(){window.location.href='day.html?route='+(isHot?'spanje':'slowakije')+'&stop='+stopId};}else{card.style.cursor='default';}
     container.appendChild(card);
   });
 }
