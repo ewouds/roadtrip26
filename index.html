@@ -240,7 +240,7 @@ function renderDays(){
     html+='<ul>'+day.acts.map(function(a){return '<li>'+a+'</li>'}).join('')+'</ul>';
     html+='<div class="tags">'+day.tags.map(function(t){return '<span class="tag">'+t+'</span>'}).join('')+'</div>';
     card.innerHTML=html;
-    var stopMap=isHot?{2:'baskenland',4:'picos',5:'picos',7:'llanes',9:'ordesa',10:'ordesa',12:'gavarnie'}:{2:'moezel',4:'berchtesgaden',5:'berchtesgaden',7:'salzkammergut',9:'tatra',10:'tatra',12:'wachau'};
+    var stopMap=isHot?{1:'baskenland',2:'baskenland',3:'picos',4:'picos',5:'picos',6:'llanes',7:'llanes',8:'ordesa',9:'ordesa',10:'ordesa',11:'gavarnie',12:'gavarnie',13:'gavarnie',14:'gavarnie'}:{1:'moezel',2:'moezel',3:'berchtesgaden',4:'berchtesgaden',5:'berchtesgaden',6:'salzkammergut',7:'salzkammergut',8:'tatra',9:'tatra',10:'tatra',11:'wachau',12:'wachau',13:'wachau',14:'wachau'};
     var stopId=stopMap[day.d];
     if(stopId){card.style.cursor='pointer';card.onclick=function(){window.location.href='day.html?route='+(isHot?'spanje':'slowakije')+'&stop='+stopId};}else{card.style.cursor='default';}
     container.appendChild(card);
