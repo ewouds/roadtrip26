@@ -25,8 +25,10 @@ h1,h2,h3{font-family:var(--font-head);letter-spacing:1px}
 .gallery-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:16px 0;scrollbar-width:none}
 .gallery-wrap::-webkit-scrollbar{display:none}
 .gallery{display:flex;gap:12px;padding:0 16px;min-width:max-content}
-.gallery img{height:220px;border-radius:var(--radius);object-fit:cover;cursor:pointer;transition:.2s}
+.gallery img{width:280px;height:200px;border-radius:var(--radius);object-fit:cover;cursor:pointer;transition:.2s}
 .gallery img:hover{transform:scale(1.02);box-shadow:0 4px 20px rgba(0,0,0,.5)}
+.gallery figure{margin:0;flex-shrink:0;text-align:center}
+.gallery figcaption{color:var(--muted);font-size:.75rem;margin-top:6px;max-width:280px}
 .section{margin:24px 16px;background:var(--card);border-radius:var(--radius);padding:20px}
 .section h2{font-size:1.3rem;margin-bottom:14px;color:var(--accent)}
 .activity{padding:12px 0;border-bottom:1px solid var(--surface)}
@@ -67,8 +69,8 @@ baskenland:{name:"Baskenland",country:"\ud83c\uddea\ud83c\uddf8",days:"Dag 2",da
   travel:"🚗 Vanuit België → Baskenland (~900 km, ochtend vertrek)",
   images:[
     {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Gaztelugache%2C_Bermeo%2C_Pa%C3%ADs_Vasco%2C_Espa%C3%B1a%2C_2019-08-13%2C_DD_14.jpg/1280px-Gaztelugache%2C_Bermeo%2C_Pa%C3%ADs_Vasco%2C_Espa%C3%B1a%2C_2019-08-13%2C_DD_14.jpg",cap:"Gaztelugatxe"},
-    {url:"https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?w=1200&q=80",cap:"La Concha, San Sebastián"},
-    {url:"https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&q=80",cap:"Flysch kust bij Zumaia"}
+    {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Playa_de_La_Concha%2C_San_Sebasti%C3%A1n%2C_2023-08-11%2C_DD_07.jpg/1280px-Playa_de_La_Concha%2C_San_Sebasti%C3%A1n%2C_2023-08-11%2C_DD_07.jpg",cap:"La Concha, San Sebastián"},
+    {url:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Flysch_Zumaia.jpg/1280px-Flysch_Zumaia.jpg",cap:"Flysch kust bij Zumaia"}
   ],
   activities:["Gaztelugatxe - Game of Thrones eiland, 241 treden naar de hermitage","San Sebasti\u00e1n - Pintxos in de oude stad, La Concha strand","Zwemmen in de Golf van Biskaje"],
   video:"VF_Vr-ccayI"},
@@ -165,11 +167,13 @@ lb.innerHTML='<img><div class="caption"></div>';
 document.body.appendChild(lb);
 lb.onclick=function(){lb.classList.remove('active')};
 stop.images.forEach(function(img){
+  var fig=document.createElement('figure');
   var el=document.createElement('img');
-  el.src=img.url;el.alt=img.cap;el.title=img.cap;
-  el.loading='lazy';
+  el.src=img.url;el.alt=img.cap;el.loading='lazy';
   el.onclick=function(){lb.querySelector('img').src=img.url;lb.querySelector('.caption').textContent=img.cap;lb.classList.add('active')};
-  gal.appendChild(el);
+  var cap=document.createElement('figcaption');cap.textContent=img.cap;
+  fig.appendChild(el);fig.appendChild(cap);
+  gal.appendChild(fig);
 });
 
 // Activities
