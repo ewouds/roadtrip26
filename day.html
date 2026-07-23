@@ -35,6 +35,10 @@ h1,h2,h3{font-family:var(--font-head);letter-spacing:1px}
 .activity .adesc{font-size:.82rem;color:var(--muted)}
 .video-wrap{margin:24px 16px;border-radius:var(--radius);overflow:hidden;aspect-ratio:16/9}
 .video-wrap iframe{width:100%;height:100%;border:none}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;display:none;flex-direction:column;align-items:center;justify-content:center;padding:16px;cursor:zoom-out}
+.lightbox.active{display:flex}
+.lightbox img{max-width:95vw;max-height:80vh;border-radius:var(--radius);object-fit:contain}
+.lightbox .caption{color:#fff;font-size:1rem;margin-top:12px;text-align:center;font-weight:600;max-width:90vw}
 </style>
 </head>
 <body>
@@ -144,12 +148,17 @@ document.getElementById('flag').textContent=stop.country;
 document.getElementById('title').textContent=stop.name;
 document.getElementById('sub').textContent=stop.days+' \u2022 '+stop.dates+' 2026';
 
-// Gallery
+// Gallery + Lightbox
 var gal=document.getElementById('gallery');
+var lb=document.createElement('div');lb.className='lightbox';
+lb.innerHTML='<img><div class="caption"></div>';
+document.body.appendChild(lb);
+lb.onclick=function(){lb.classList.remove('active')};
 stop.images.forEach(function(img){
   var el=document.createElement('img');
   el.src=img.url;el.alt=img.cap;el.title=img.cap;
   el.loading='lazy';
+  el.onclick=function(){lb.querySelector('img').src=img.url;lb.querySelector('.caption').textContent=img.cap;lb.classList.add('active')};
   gal.appendChild(el);
 });
 
