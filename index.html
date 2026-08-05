@@ -1,312 +1,495 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Roadtrip Noord-Spanje 🏔️🌊</title>
-<meta name="description" content="Roadtrip België → Baskenland → Picos de Europa → Pyreneeën & terug · 1–15 aug 2026 · EV · Gezin Smets-Gegg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cold Route · Roadtrip aug 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
-:root{
-  --bg:#0b1220;--bg2:#0f1a2e;--card:#13203a;--line:#223150;
-  --ink:#e8eefc;--muted:#9fb2d4;--accent:#ff9f48;--accent2:#7ee0c0;
-  --mountain:#ff9f48;--swim:#5ce0d6;--rest:#ffcf6b;--nature:#7ee0c0;--coast:#48a9ff;
+:root {
+  --bg: #0f1117;
+  --card: #1a1d27;
+  --card-hover: #222633;
+  --border: #2a2e3b;
+  --text: #e4e4e7;
+  --text-muted: #9ca3af;
+  --accent-orange: #ff9f48;
+  --accent-teal: #5ce0d6;
+  --accent-gold: #fbbf24;
+  --accent-red: #ef4444;
+  --accent-green: #22c55e;
+  --today-glow: rgba(255,159,72,0.25);
+  --radius: 16px;
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:Inter,system-ui,sans-serif;background:
-  radial-gradient(1200px 600px at 80% -10%,#4a2e16 0%,transparent 60%),
-  radial-gradient(900px 500px at -10% 10%,#122038 0%,transparent 55%),
-  var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.04em; }
 
-/* HERO */
-.hero{position:relative;overflow:hidden;padding:72px 20px 56px;text-align:center;
-  background:linear-gradient(180deg,#20100a 0%,#0c1730 100%);border-bottom:1px solid rgba(255,159,72,.18)}
-.hero:before{content:"";position:absolute;inset:0;
-  background-image:radial-gradient(2px 2px at 20% 30%,rgba(255,255,255,.5),transparent),
-  radial-gradient(1px 1px at 60% 70%,rgba(255,255,255,.4),transparent),
-  radial-gradient(1.5px 1.5px at 80% 20%,rgba(255,255,255,.3),transparent);
-  opacity:.6;pointer-events:none}
-.hero-inner{position:relative;max-width:920px;margin:0 auto}
-.kicker{letter-spacing:.28em;font-size:13px;font-weight:600;color:var(--accent);text-transform:uppercase;margin-bottom:14px}
-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,9vw,100px);line-height:.92;margin:0;
-  letter-spacing:.01em;background:linear-gradient(180deg,#fff,#ffcfa0);-webkit-background-clip:text;background-clip:text;color:transparent}
-.sub{font-size:clamp(15px,2.2vw,20px);color:var(--ink);margin:14px 0 4px;font-weight:600}
-.tagline{color:var(--muted);font-size:15px;margin:0 0 24px;font-style:italic}
-.stats{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:8px}
-.stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;
-  padding:12px 16px;min-width:80px;backdrop-filter:blur(6px)}
-.stat b{display:block;font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;color:var(--accent)}
-.stat span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+/* Hero */
+.hero {
+  position: relative;
+  padding: 80px 20px 60px;
+  text-align: center;
+  background: linear-gradient(135deg, #0f1117 0%, #1a1028 40%, #0f1117 100%);
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 70%, rgba(255,159,72,0.08) 0%, transparent 50%),
+              radial-gradient(circle at 70% 30%, rgba(92,224,214,0.06) 0%, transparent 50%);
+  animation: heroGlow 12s ease-in-out infinite alternate;
+}
+@keyframes heroGlow { 0% { transform: scale(1) rotate(0deg); } 100% { transform: scale(1.05) rotate(2deg); } }
+.hero-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+.hero h1 { font-size: clamp(3rem, 8vw, 5.5rem); color: var(--accent-orange); line-height: 1; margin-bottom: 8px; }
+.hero .subtitle { font-size: 1.15rem; color: var(--text-muted); font-weight: 300; margin-bottom: 6px; }
+.hero .vehicle-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--card); border: 1px solid var(--border); border-radius: 999px;
+  padding: 6px 16px; font-size: 0.85rem; color: var(--accent-teal); margin-top: 16px;
+}
 
-/* MAP */
-#map{height:420px;width:100%;background:#0a1020;z-index:0}
-.leaflet-container{background:#0a1020}
+/* Stats bar */
+.stats-bar {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
+  max-width: 800px; margin: 30px auto 0; padding: 0 20px;
+}
+.stat {
+  background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+  padding: 14px 22px; text-align: center; min-width: 120px; flex: 1;
+}
+.stat .num { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--accent-orange); line-height: 1; }
+.stat .label { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px; }
 
-/* MAIN */
-main{max-width:920px;margin:0 auto;padding:0 18px 60px}
-.section-label{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.1em;
-  color:var(--accent);text-align:center;margin:36px 0 4px;text-transform:uppercase}
+/* Map */
+.map-section { padding: 40px 20px; }
+.map-container {
+  max-width: 1100px; margin: 0 auto; border-radius: var(--radius);
+  overflow: hidden; border: 1px solid var(--border); height: 420px;
+}
+#map { height: 100%; width: 100%; }
 
-/* STOP CARDS */
-.stop{margin:16px 0;background:linear-gradient(180deg,var(--card),#101b32);
-  border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:22px 22px;
-  box-shadow:0 12px 40px rgba(0,0,0,.35);border-left:4px solid var(--accent)}
-.stop.return{border-left-color:var(--swim)}
-.stop-head{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.stop-num{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--accent);min-width:36px}
-.stop.return .stop-num{color:var(--swim)}
-.stop-head h2{margin:0;font-size:clamp(18px,3vw,24px);font-weight:700}
-.stop-country{font-size:13px;color:var(--muted);margin:4px 0 0 52px}
-.stop-nights{margin-left:auto;background:rgba(255,159,72,.15);color:var(--accent);
-  font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px;white-space:nowrap}
-.stop.return .stop-nights{background:rgba(92,224,214,.15);color:var(--swim)}
-.stop-body{margin-top:14px;padding-left:52px}
-.stop-body ul{list-style:none;padding:0;margin:0}
-.stop-body li{padding:5px 0 5px 24px;position:relative;font-size:15px;color:#d3dde5}
-.stop-body li::before{content:"";position:absolute;left:4px;top:13px;width:7px;height:7px;border-radius:50%;background:var(--accent2)}
-.stop-drive{margin-top:10px;font-size:13px;color:var(--muted);padding-left:24px;display:flex;align-items:center;gap:8px}
-.stop-drive::before{content:"🚗";font-size:14px}
-.stop-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;padding-left:24px}
-.tag{font-size:11px;padding:3px 10px;border-radius:8px;font-weight:600}
-.tag-mountain{background:rgba(255,159,72,.15);color:var(--mountain)}
-.tag-swim{background:rgba(92,224,214,.15);color:var(--swim)}
-.tag-nature{background:rgba(126,224,192,.15);color:var(--nature)}
-.tag-chill{background:rgba(255,207,107,.15);color:var(--rest)}
-.tag-coast{background:rgba(72,169,255,.15);color:var(--coast)}
+/* Section headers */
+.section-header {
+  max-width: 900px; margin: 50px auto 20px; padding: 0 20px;
+  display: flex; align-items: center; gap: 16px;
+}
+.section-header h2 { font-size: 2.2rem; white-space: nowrap; }
+.section-header .line { flex: 1; height: 2px; border-radius: 1px; }
+.heenweg-header h2 { color: var(--accent-orange); }
+.heenweg-header .line { background: linear-gradient(90deg, var(--accent-orange), transparent); }
+.terugweg-header h2 { color: var(--accent-teal); }
+.terugweg-header .line { background: linear-gradient(90deg, var(--accent-teal), transparent); }
 
-/* TIPS */
-.tips{background:var(--card);border:1px solid rgba(255,207,107,.25);border-radius:16px;
-  padding:20px 22px;margin:32px 0}
-.tips h3{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--rest);margin:0 0 12px;letter-spacing:.06em}
-.tips ul{list-style:none;padding:0;margin:0}
-.tips li{padding:6px 0 6px 24px;position:relative;font-size:14px;color:#d3dde5}
-.tips li::before{content:"💡";position:absolute;left:0;top:6px;font-size:12px}
+/* Stop cards */
+.stops { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+.stop-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  margin-bottom: 24px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  position: relative;
+}
+.stop-card:hover { border-color: #3a3e4b; }
+.stop-card.today {
+  border-color: var(--accent-orange);
+  box-shadow: 0 0 30px var(--today-glow), 0 0 60px rgba(255,159,72,0.08);
+}
+.stop-card.today::before {
+  content: '📍 VANDAAG';
+  position: absolute; top: -12px; right: 20px;
+  background: var(--accent-orange); color: #000; font-weight: 700; font-size: 0.72rem;
+  padding: 3px 12px; border-radius: 999px; letter-spacing: 0.08em;
+}
+.stop-card.optional { border-style: dashed; }
+.stop-card.optional::after {
+  content: 'OPTIONEEL';
+  position: absolute; top: -12px; left: 20px;
+  background: var(--accent-gold); color: #000; font-weight: 700; font-size: 0.72rem;
+  padding: 3px 12px; border-radius: 999px; letter-spacing: 0.08em;
+}
+.stop-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+.stop-number {
+  font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem;
+  background: var(--accent-orange); color: #000; width: 32px; height: 32px;
+  border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.stop-card.terugweg .stop-number { background: var(--accent-teal); }
+.stop-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: #fff; }
+.stop-meta {
+  display: flex; flex-wrap: wrap; gap: 8px 18px;
+  font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;
+}
+.stop-meta span { display: inline-flex; align-items: center; gap: 4px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.tag {
+  background: rgba(255,255,255,0.06); border-radius: 999px;
+  padding: 4px 12px; font-size: 0.75rem; color: var(--text-muted);
+}
 
-/* FOOTER */
-footer{text-align:center;color:var(--muted);font-size:13px;padding:24px 20px;border-top:1px solid rgba(255,255,255,.06)}
-footer a{color:var(--accent);text-decoration:none}
+/* Accommodation */
+.accommodation {
+  background: rgba(255,159,72,0.08); border-left: 3px solid var(--accent-orange);
+  border-radius: 0 12px 12px 0; padding: 14px 18px; margin-bottom: 18px;
+  font-size: 0.88rem;
+}
+.accommodation strong { color: var(--accent-orange); }
+.accommodation .detail { color: var(--text-muted); margin-top: 4px; font-size: 0.82rem; }
 
-/* TODAY */
-.stop.today{border-color:rgba(255,159,72,.7);box-shadow:0 12px 40px rgba(0,0,0,.35),0 0 22px rgba(255,159,72,.12)}
+/* Activities */
+.activities-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px;
+}
+.activity {
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 10px 14px; background: rgba(255,255,255,0.03);
+  border-radius: 10px; font-size: 0.88rem;
+}
+.activity-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+.weather-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 16px; padding: 8px 16px;
+  background: rgba(92,224,214,0.08); border: 1px solid rgba(92,224,214,0.2);
+  border-radius: 999px; color: var(--accent-teal); text-decoration: none;
+  font-size: 0.82rem; transition: background 0.2s;
+}
+.weather-link:hover { background: rgba(92,224,214,0.15); }
+
+/* Tips */
+.tips-section {
+  max-width: 900px; margin: 50px auto; padding: 0 20px;
+}
+.tips-section h2 { font-size: 2.2rem; color: var(--accent-gold); margin-bottom: 20px; }
+.tips-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+.tip {
+  background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+  padding: 18px; font-size: 0.88rem; line-height: 1.5;
+}
+.tip-icon { font-size: 1.3rem; margin-bottom: 6px; }
+
+/* Footer */
+footer {
+  text-align: center; padding: 50px 20px 40px;
+  border-top: 1px solid var(--border); margin-top: 60px;
+  color: var(--text-muted); font-size: 0.85rem;
+}
+footer .title { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--accent-orange); margin-bottom: 4px; }
+footer a { color: var(--accent-teal); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+footer .koda { margin-top: 14px; font-size: 0.78rem; }
+
+/* Leaflet overrides */
+.leaflet-container { background: #0f1117; }
+.custom-marker {
+  background: var(--accent-orange); color: #000; font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px; width: 28px; height: 28px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+.custom-marker.teal { background: var(--accent-teal); }
+.custom-marker.home { background: #888; font-size: 12px; }
+
+@media (max-width: 600px) {
+  .hero { padding: 60px 16px 40px; }
+  .stop-card { padding: 20px; }
+  .activities-grid { grid-template-columns: 1fr; }
+  .map-container { height: 300px; }
+  .stats-bar { gap: 8px; }
+  .stat { min-width: 80px; padding: 10px 14px; }
+  .stat .num { font-size: 1.5rem; }
+}
 </style>
 </head>
 <body>
-<div class="hero">
-  <div class="hero-inner">
-    <div class="kicker">🌞 Zomerroadtrip — Natuur & Frisse Lucht</div>
-    <h1>Noord-Spanje</h1>
-    <div class="sub">België → Baskenland → Picos → Pyreneeën & terug</div>
-    <div class="tagline">1 – 15 augustus 2026 · Audi Q4 e-tron · Tent + Airbnb</div>
-    <div class="stats">
-      <div class="stat"><b>15</b><span>Dagen</span></div>
-      <div class="stat"><b>~3.400</b><span>km</span></div>
-      <div class="stat"><b>6</b><span>Stops</span></div>
-      <div class="stat"><b>2</b><span>Landen</span></div>
-    </div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>COLD ROUTE</h1>
+    <p class="subtitle">Gezinsroadtrip door Centraal-Europa · aug 2026</p>
+    <p class="subtitle" style="font-size:0.95rem;">Praag → Slowakije → Oostenrijk → Alpen → Zwarte Woud</p>
+    <div class="vehicle-badge">⚡ Audi Q4 e-tron</div>
   </div>
+  <div class="stats-bar">
+    <div class="stat"><div class="num">15</div><div class="label">Dagen</div></div>
+    <div class="stat"><div class="num">~3000</div><div class="label">Kilometer</div></div>
+    <div class="stat"><div class="num">5</div><div class="label">Stops</div></div>
+    <div class="stat"><div class="num">4</div><div class="label">Landen</div></div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="map-section">
+  <div class="map-container"><div id="map"></div></div>
+</section>
+
+<!-- HEENWEG -->
+<div class="section-header heenweg-header">
+  <h2>🟠 HEENWEG</h2><div class="line"></div>
 </div>
 
-<div id="map"></div>
+<div class="stops">
 
-<main>
-  <div class="section-label">🚗 Heenweg — Zuidwaarts</div>
-
-  <section class="stop" data-date="2026-08-01">
-    <div class="stop-head">
-      <div class="stop-num">01</div>
-      <h2>Baskenland — Gaztelugatxe</h2>
-      <div class="stop-nights">2 nachten</div>
+  <!-- STOP 1: PRAAG -->
+  <article class="stop-card" data-date="2026-08-01" data-end="2026-08-03">
+    <div class="stop-top">
+      <span class="stop-number">1</span>
+      <span class="stop-title">Praag 🇨🇿</span>
     </div>
-    <div class="stop-country">🇪🇸 Spaanse Baskische kust — vr 1 aug (na tussenstop FR)</div>
-    <div class="stop-body">
-      <ul>
-        <li>Gaztelugatxe — iconisch rotseilandje met brug & trap naar de ermitage (Game of Thrones!)</li>
-        <li>San Sebastián — mooie stadsstranden, pintxos</li>
-        <li>Bilbao op ~1u (optioneel)</li>
-        <li>Zwemmen in de Golf van Biskaje</li>
-      </ul>
-      <div class="stop-drive">±1.000 km vanuit Hove · in 2 dagen (tussenstop Frankrijk)</div>
-      <div class="stop-tags">
-        <span class="tag tag-coast">🌊 Kust</span>
-        <span class="tag tag-swim">🏊 Zwemmen</span>
+    <div class="stop-meta">
+      <span>📅 vr 1 aug – zo 3 aug</span>
+      <span>🌙 2 nachten</span>
+      <span>🚗 ±900 km vanuit Hove · ~9u</span>
+    </div>
+    <div class="tags">
+      <span class="tag">🏙️ Stad</span><span class="tag">🍺 Cultuur</span>
+    </div>
+    <div class="accommodation">
+      <strong>🏠 Budget Apartment</strong> — Kubelikova 40, Prague 13000<br>
+      Booking #5969360507<br>
+      <div class="detail">
+        Check-in 14:00-18:00 (early 11:00 = €5 cash) · Check-out 10:00<br>
+        ⚠️ Geen receptie — bel 15-20 min voor aankomst<br>
+        📞 +420 775 225 210 · WhatsApp: +420 778 082 500
       </div>
     </div>
-  </section>
+    <div class="activities-grid">
+      <div class="activity"><span class="activity-icon">🏛️</span><span>Karlův most, Praagse burcht, Oudestadsplein</span></div>
+      <div class="activity"><span class="activity-icon">🥾</span><span>Petřín-heuvel — uitzicht over de stad</span></div>
+      <div class="activity"><span class="activity-icon">🍺</span><span>Tsjechisch bier & lokale keuken</span></div>
+      <div class="activity"><span class="activity-icon">🏊</span><span>Žluté lázně — openlucht zwembad aan de Moldau</span></div>
+    </div>
+    <a class="weather-link" href="https://www.yr.no/en/forecast/daily-table/2-3067696/Prague" target="_blank" rel="noopener">🌤️ Weer Praag — yr.no</a>
+  </article>
 
-  <section class="stop" data-date="2026-08-03">
-    <div class="stop-head">
-      <div class="stop-num">02</div>
-      <h2>Picos de Europa</h2>
-      <div class="stop-nights">2–3 nachten</div>
+  <!-- STOP 2: HUTY -->
+  <article class="stop-card" data-date="2026-08-03" data-end="2026-08-07">
+    <div class="stop-top">
+      <span class="stop-number">2</span>
+      <span class="stop-title">Huty — Orava 🇸🇰</span>
     </div>
-    <div class="stop-country">🇪🇸 Asturië/Cantabrië — zo 3 aug · ⭐ Leslie's #1 (Time Out beste plek)</div>
-    <div class="stop-body">
-      <ul>
-        <li>Lagos de Covadonga — spectaculaire bergmeren, wandelingen</li>
-        <li>Ruta del Cares — beroemde kloofwandeling</li>
-        <li>Cangas de Onís, Covadonga heiligdom</li>
-        <li>Kabelbaan Fuente Dé — panorama over de toppen</li>
-      </ul>
-      <div class="stop-drive">±300 km vanuit Baskenland · ~3,5u</div>
-      <div class="stop-tags">
-        <span class="tag tag-mountain">⛰️ Bergen</span>
-        <span class="tag tag-nature">🥾 Hikes</span>
-        <span class="tag tag-swim">🏊 Bergmeren</span>
-      </div>
+    <div class="stop-meta">
+      <span>📅 zo 3 aug – do 7 aug</span>
+      <span>🌙 4 nachten</span>
+      <span>🚗 ±350 km vanuit Praag · ~4u</span>
     </div>
-  </section>
+    <div class="tags">
+      <span class="tag">⛰️ Bergen</span><span class="tag">🌲 Natuur</span><span class="tag">🏛️ Kasteel</span>
+    </div>
+    <div class="activities-grid">
+      <div class="activity"><span class="activity-icon">🥾</span><span>Roháče (Západné Tatry) — spectaculaire bergwandelingen</span></div>
+      <div class="activity"><span class="activity-icon">🏛️</span><span>Oravský hrad — imposant kasteel op een klif boven de Orava-rivier</span></div>
+      <div class="activity"><span class="activity-icon">🏊</span><span>Oravská priehrada (stuwmeer) — zwemmen, watersport, stranden, 35km² "Orava Zee"</span></div>
+      <div class="activity"><span class="activity-icon">🌲</span><span>Authentiek Slowaaks dorpsleven, bossen, wildlife</span></div>
+      <div class="activity"><span class="activity-icon">🏛️</span><span>Openluchtmuseum Zuberec — traditionele houten architectuur</span></div>
+      <div class="activity"><span class="activity-icon">🥾</span><span>Oravská Magura — wandelen met uitzicht</span></div>
+    </div>
+    <a class="weather-link" href="https://www.yr.no/en/forecast/daily-table/2-3058898/Námestovo" target="_blank" rel="noopener">🌤️ Weer Námestovo — yr.no</a>
+  </article>
 
-  <section class="stop" data-date="2026-08-06">
-    <div class="stop-head">
-      <div class="stop-num">03</div>
-      <h2>Noordkust — Asturische stranden</h2>
-      <div class="stop-nights">1–2 nachten</div>
+  <!-- STOP 3: MARIAHOF -->
+  <article class="stop-card" data-date="2026-08-07" data-end="2026-08-10">
+    <div class="stop-top">
+      <span class="stop-number">3</span>
+      <span class="stop-title">Mariahof — Naturpark 🇦🇹</span>
     </div>
-    <div class="stop-country">🇪🇸 Asturische kust — wo 6 aug</div>
-    <div class="stop-body">
-      <ul>
-        <li>Playa de Gulpiyuri — verborgen mini-strandje in een weide</li>
-        <li>Llanes — kleurrijke haven, mooie stranden</li>
-        <li>Zwemmen & strandtijd voor Lena 🏖️</li>
-        <li>Verse cider & zeevruchten</li>
-      </ul>
-      <div class="stop-drive">±80 km vanuit Picos · ~1,5u</div>
-      <div class="stop-tags">
-        <span class="tag tag-coast">🌊 Zee</span>
-        <span class="tag tag-swim">🏖️ Strand</span>
-        <span class="tag tag-chill">😎 Chill</span>
-      </div>
+    <div class="stop-meta">
+      <span>📅 do 7 aug – zo 10 aug</span>
+      <span>🌙 3 nachten</span>
+      <span>🚗 ±350 km vanuit Huty · ~4u</span>
     </div>
-  </section>
+    <div class="tags">
+      <span class="tag">🏊 Zwemmen</span><span class="tag">🥾 Wandelen</span><span class="tag">🧗 Klettersteig</span>
+    </div>
+    <div class="activities-grid">
+      <div class="activity"><span class="activity-icon">🏊</span><span>Furtnerteich — gratis zwemvijver, ligweide, steiger, Natura 2000 vogelreservaat (🚗 7 min)</span></div>
+      <div class="activity"><span class="activity-icon">🏊</span><span>Podolerteich — kleine natuurlijke vijver (🚗 1 min)</span></div>
+      <div class="activity"><span class="activity-icon">🥾</span><span>Graggerschlucht — kloof met waterval (🚗 17 min)</span></div>
+      <div class="activity"><span class="activity-icon">🥾</span><span>4-Seen-Runde — 7 km, 2u, makkelijke wandeling (🚗 ~10 min)</span></div>
+      <div class="activity"><span class="activity-icon">🥾</span><span>Dürnberger Moor — 12.000 jaar oud veen, uitkijktoren, leerpad (🚗 ~10 min)</span></div>
+      <div class="activity"><span class="activity-icon">🧗</span><span>Klettersteig — 2 via ferrata routes in Naturpark Zirbitzkogel-Grebenzen (🚗 20-30 min)</span></div>
+      <div class="activity"><span class="activity-icon">🏛️</span><span>Burgruine Steinschloss (🚗 7 min)</span></div>
+      <div class="activity"><span class="activity-icon">🏛️</span><span>Stift St. Lambrecht — Benedictijner abdij</span></div>
+      <div class="activity"><span class="activity-icon">🌊</span><span>Zeutschacher Ursprung — bijzondere karstbron</span></div>
+      <div class="activity"><span class="activity-icon">🧗</span><span>Paragliding vanaf de Grebenzen (🚗 ~20 min)</span></div>
+      <div class="activity"><span class="activity-icon">🥾</span><span>Zirbitzkogel (2.396m) — serieuze daghike, hoogste punt regio (🚗 ~30 min naar start)</span></div>
+    </div>
+    <a class="weather-link" href="https://www.yr.no/en/forecast/daily-table/2-2771987/Mariahof" target="_blank" rel="noopener">🌤️ Weer Mariahof — yr.no</a>
+  </article>
 
-  <section class="stop" data-date="2026-08-08">
-    <div class="stop-head">
-      <div class="stop-num">04</div>
-      <h2>Ordesa y Monte Perdido</h2>
-      <div class="stop-nights">2–3 nachten</div>
-    </div>
-    <div class="stop-country">🇪🇸 Aragonese Pyreneeën, Torla — vr 8 aug · ⭐ hoogtepunt</div>
-    <div class="stop-body">
-      <ul>
-        <li>Ordesa-vallei — een van de mooiste NP's van Europa</li>
-        <li>Torla als uitvalsbasis, Aínsa (middeleeuws dorp) op weg</li>
-        <li>Pineta-vallei — indrukwekkend cirque</li>
-        <li>Watervallen, gemzen, alpiene toppen</li>
-      </ul>
-      <div class="stop-drive">±500 km vanuit kust · ~5,5u (met laadstop)</div>
-      <div class="stop-tags">
-        <span class="tag tag-mountain">⛰️ Hooggebergte</span>
-        <span class="tag tag-nature">🥾 Wandelen</span>
-      </div>
-    </div>
-  </section>
+</div>
 
-  <div class="section-label">🔵 Terugweg — via Frankrijk</div>
+<!-- TERUGWEG -->
+<div class="section-header terugweg-header">
+  <h2>🔵 TERUGWEG</h2><div class="line"></div>
+</div>
 
-  <section class="stop return" data-date="2026-08-11">
-    <div class="stop-head">
-      <div class="stop-num">05</div>
-      <h2>Cirque de Gavarnie</h2>
-      <div class="stop-nights">1–2 nachten</div>
-    </div>
-    <div class="stop-country">🇫🇷 Franse Pyreneeën — ma 11 aug · ⭐ Ewoud's idee</div>
-    <div class="stop-body">
-      <ul>
-        <li>Spectaculair amfitheater — hoogste waterval van Frankrijk (423m)</li>
-        <li>Wandeling ~2u naar de voet van het cirque</li>
-        <li>UNESCO-werelderfgoed, grenst aan Ordesa</li>
-        <li>Bergdorpje Gavarnie</li>
-      </ul>
-      <div class="stop-drive">±150 km vanuit Ordesa (over de grens) · ~2,5u</div>
-      <div class="stop-tags">
-        <span class="tag tag-mountain">⛰️ Bergen</span>
-        <span class="tag tag-nature">💦 Waterval</span>
-      </div>
-    </div>
-  </section>
+<div class="stops">
 
-  <section class="stop return" data-date="2026-08-13">
-    <div class="stop-head">
-      <div class="stop-num">🏠</div>
-      <h2>Terug naar Hove</h2>
-      <div class="stop-nights">14–15 aug</div>
+  <!-- STOP 4: OBERSTDORF -->
+  <article class="stop-card terugweg" data-date="2026-08-10" data-end="2026-08-13">
+    <div class="stop-top">
+      <span class="stop-number">4</span>
+      <span class="stop-title">Oberstdorf 🇩🇪</span>
     </div>
-    <div class="stop-country">🇫🇷→🇧🇪 — wo 13 aug vertrek</div>
-    <div class="stop-body">
-      <ul>
-        <li>Gavarnie → België: ±1.000 km</li>
-        <li>In 2 rustige etappes (tussenstop Loire/Bourgogne)</li>
-        <li>Optioneel: Monasterio de Piedra (Zaragoza) als je zuidelijker terug wil</li>
-        <li>Ionity HPC langs de A-wegen — 20-30 min laden</li>
-      </ul>
-      <div class="stop-drive">±1.000 km · 2 dagen</div>
+    <div class="stop-meta">
+      <span>📅 zo 10 aug – wo 13 aug</span>
+      <span>🌙 3 nachten</span>
+      <span>🚗 ±400 km vanuit Mariahof · ~4,5u</span>
     </div>
-  </section>
+    <div class="tags">
+      <span class="tag">⛰️ Alpen</span><span class="tag">🥾 Wandelen</span><span class="tag">🧗 Via Ferrata</span>
+    </div>
+    <div class="activities-grid">
+      <div class="activity"><span class="activity-icon">🥾</span><span>Breitachklamm — diepste rotskloof van Midden-Europa, spectaculair</span></div>
+      <div class="activity"><span class="activity-icon">🥾</span><span>Nebelhorn (2.224m) — kabelbaan + panoramawandelingen, 400-toppen uitzicht</span></div>
+      <div class="activity"><span class="activity-icon">🧗</span><span>Hindelanger Klettersteig — beroemde via ferrata, 4u, sportief</span></div>
+      <div class="activity"><span class="activity-icon">🏊</span><span>Freibergsee — prachtig bergmeer, zwemmen in alpendecor</span></div>
+      <div class="activity"><span class="activity-icon">🏊</span><span>Moorbad Oberstdorf — buitenzwembad</span></div>
+      <div class="activity"><span class="activity-icon">🥾</span><span>200+ km wandelpaden op 3 hoogteniveaus</span></div>
+      <div class="activity"><span class="activity-icon">🥾</span><span>Breitachklamm → Freibergsee combi-wandeling (kloof + zwemmen!)</span></div>
+      <div class="activity"><span class="activity-icon">🚴</span><span>Fietsen in het Allgäu</span></div>
+    </div>
+    <a class="weather-link" href="https://www.yr.no/en/forecast/daily-table/2-2858622/Oberstdorf" target="_blank" rel="noopener">🌤️ Weer Oberstdorf — yr.no</a>
+  </article>
 
-  <div class="tips">
-    <h3>💡 Praktisch</h3>
-    <ul>
-      <li><b>ABRP</b> instellen voor de Q4 — plant automatisch laadstops</li>
-      <li>Q4 e-tron: realistisch ~350–400 km per lading → 1 laadstop per rit-etappe</li>
-      <li>Spanje kan heet zijn in aug — noordkust & bergen blijven aangenaam fris 🌡️</li>
-      <li>Picos & Ordesa Airbnb <b>vroeg boeken</b> — populair in augustus</li>
-      <li>Ruta del Cares & Ordesa: goede wandelschoenen + vroeg starten (parking vol)</li>
-      <li>Volledig flexibel: bevalt een plek niet → na 1 nacht verder</li>
-    </ul>
+  <!-- STOP 5: ZWARTE WOUD -->
+  <article class="stop-card terugweg optional" data-date="2026-08-13" data-end="2026-08-15">
+    <div class="stop-top">
+      <span class="stop-number">5</span>
+      <span class="stop-title">Zwarte Woud 🇩🇪</span>
+    </div>
+    <div class="stop-meta">
+      <span>📅 wo 13 aug – do 14 aug</span>
+      <span>🌙 1-2 nachten</span>
+      <span>🚗 ±250 km vanuit Oberstdorf · ~3u</span>
+    </div>
+    <div class="tags">
+      <span class="tag">🌲 Bossen</span><span class="tag">😎 Relaxen</span>
+    </div>
+    <div class="activities-grid">
+      <div class="activity"><span class="activity-icon">🌲</span><span>Triberg-watervallen — hoogste waterval van Duitsland (163m)</span></div>
+      <div class="activity"><span class="activity-icon">🥾</span><span>Wandelen door dichte dennenbossen</span></div>
+      <div class="activity"><span class="activity-icon">🏊</span><span>Titisee — bergmeer, zwemmen, bootje varen</span></div>
+      <div class="activity"><span class="activity-icon">😎</span><span>Relaxen voor de laatste rit naar huis</span></div>
+      <div class="activity"><span class="activity-icon">🍰</span><span>Schwarzwälder Kirschtorte op de plek van oorsprong</span></div>
+    </div>
+    <a class="weather-link" href="https://www.yr.no/en/forecast/daily-table/2-2821807/Triberg" target="_blank" rel="noopener">🌤️ Weer Triberg — yr.no</a>
+  </article>
+
+  <!-- STOP HOME -->
+  <article class="stop-card terugweg" data-date="2026-08-15" data-end="2026-08-16">
+    <div class="stop-top">
+      <span class="stop-number">🏠</span>
+      <span class="stop-title">Terug naar Hove</span>
+    </div>
+    <div class="stop-meta">
+      <span>📅 14-15 aug</span>
+      <span>🚗 ±600 km vanuit Zwarte Woud · 1 dag</span>
+    </div>
+    <div class="activities-grid">
+      <div class="activity"><span class="activity-icon">🛣️</span><span>Rustige rit via Luxemburg of langs de Rijn</span></div>
+      <div class="activity"><span class="activity-icon">⚡</span><span>Ionity HPC langs snelwegen</span></div>
+      <div class="activity"><span class="activity-icon">📝</span><span>±750 km vanuit Oberstdorf als Zwarte Woud skip</span></div>
+    </div>
+  </article>
+
+</div>
+
+<!-- TIPS -->
+<section class="tips-section">
+  <h2>💡 TIPS & VOORBEREIDINGEN</h2>
+  <div class="tips-grid">
+    <div class="tip"><div class="tip-icon">⚡</div><strong>ABRP</strong> instellen voor de Q4 e-tron — plant automatisch laadstops langs de route.</div>
+    <div class="tip"><div class="tip-icon">🔋</div><strong>Q4 e-tron:</strong> ~350-400 km per lading → 1 laadstop per etappe is voldoende.</div>
+    <div class="tip"><div class="tip-icon">❄️</div><strong>Cold Route</strong> = koeler weer — bergen & natuur blijven fris, ook in augustus.</div>
+    <div class="tip"><div class="tip-icon">🥾</div><strong>Goede wandelschoenen</strong> essentieel — kloven, klettersteigen, bergpaden.</div>
+    <div class="tip"><div class="tip-icon">🏊</div><strong>Zwemspullen</strong> altijd mee — overal bergmeren en zwemvijvers.</div>
+    <div class="tip"><div class="tip-icon">🔄</div><strong>Flexibel:</strong> bevalt een plek niet → na 1 nacht verder rijden.</div>
+    <div class="tip"><div class="tip-icon">🌲</div><strong>Zwarte Woud</strong> is optioneel — beslissen we onderweg.</div>
   </div>
-</main>
+</section>
 
+<!-- FOOTER -->
 <footer>
-  Roadtrip Noord-Spanje · Gezin Smets-Gegg · aug 2026<br>
-  Ideeën: Leslie (Picos), Ewoud (Gavarnie), Lena (natuur/zwemmen)<br>
-  Gemaakt door <a href="https://github.com/ewouds/roadtrip-noord-spanje">Koda 🐾</a>
+  <div class="title">COLD ROUTE</div>
+  <p>Gezin Smets-Gegg · aug 2026</p>
+  <p>Oost-route: koeler, groener, avontuurlijker</p>
+  <p style="margin-top:10px;"><a href="https://github.com/ewouds/roadtrip26" target="_blank" rel="noopener">github.com/ewouds/roadtrip26</a></p>
+  <p class="koda">Made by Koda 🐾</p>
 </footer>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-(function(){
-  var stops = [
-    {n:"🏠",lbl:"Hove",ll:[51.155,4.475],c:"#888"},
-    {n:"1",lbl:"Baskenland (Gaztelugatxe)",ll:[43.427,-2.783],c:"#ff9f48"},
-    {n:"2",lbl:"Picos de Europa",ll:[43.265,-4.950],c:"#ff9f48"},
-    {n:"3",lbl:"Asturische kust (Llanes)",ll:[43.421,-4.756],c:"#ff9f48"},
-    {n:"4",lbl:"Ordesa (Torla)",ll:[42.622,-0.111],c:"#ff9f48"},
-    {n:"5",lbl:"Cirque de Gavarnie",ll:[42.735,-0.009],c:"#5ce0d6"},
-    {n:"🏠",lbl:"Hove (terug)",ll:[51.155,4.475],c:"#5ce0d6"}
-  ];
+// Map
+const map = L.map('map', { scrollWheelZoom: false }).setView([48.5, 12], 5);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
+  subdomains: 'abcd', maxZoom: 19
+}).addTo(map);
 
-  var map = L.map('map',{scrollWheelZoom:false,zoomControl:true}).setView([45.0,0.0],5);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
-    attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
-    maxZoom:18
-  }).addTo(map);
+function makeIcon(label, cls) {
+  return L.divIcon({ className: '', html: '<div class="custom-marker ' + cls + '">' + label + '</div>', iconSize: [28, 28], iconAnchor: [14, 14] });
+}
 
-  var heenLine = stops.slice(0,5).map(function(s){return s.ll});
-  L.polyline(heenLine,{color:'#ff9f48',weight:3,opacity:.7,dashArray:'6,10'}).addTo(map);
-  var terugLine = stops.slice(4).map(function(s){return s.ll});
-  L.polyline(terugLine,{color:'#5ce0d6',weight:3,opacity:.7,dashArray:'6,10'}).addTo(map);
+const stops = [
+  { lat: 51.155, lng: 4.475, label: '🏠', cls: 'home', popup: 'Hove — Start & Finish' },
+  { lat: 50.075, lng: 14.437, label: '1', cls: '', popup: 'Praag 🇨🇿' },
+  { lat: 49.2076, lng: 19.5455, label: '2', cls: '', popup: 'Huty — Orava 🇸🇰' },
+  { lat: 47.08, lng: 14.39, label: '3', cls: '', popup: 'Mariahof 🇦🇹' },
+  { lat: 47.41, lng: 10.28, label: '4', cls: 'teal', popup: 'Oberstdorf 🇩🇪' },
+  { lat: 48.0, lng: 8.2, label: '5', cls: 'teal', popup: 'Zwarte Woud 🇩🇪' },
+];
 
-  stops.forEach(function(s,i){
-    if(i===stops.length-1) return;
-    var isHome = i===0;
-    var icon = L.divIcon({
-      className:'',
-      html:'<div style="background:'+s.c+';color:'+(isHome?'#fff':'#1a0e04')+';width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;border:3px solid #0b1220;box-shadow:0 3px 12px rgba(0,0,0,.5);font-family:Bebas Neue,sans-serif">'+s.n+'</div>',
-      iconSize:[32,32],iconAnchor:[16,16]
-    });
-    L.marker(s.ll,{icon:icon}).addTo(map).bindPopup('<b>'+s.n+' '+s.lbl+'</b>');
+stops.forEach(s => {
+  L.marker([s.lat, s.lng], { icon: makeIcon(s.label, s.cls) }).addTo(map).bindPopup(s.popup);
+});
+
+// Heenweg (orange)
+L.polyline([
+  [51.155, 4.475], [50.075, 14.437], [49.2076, 19.5455], [47.08, 14.39]
+], { color: '#ff9f48', weight: 3, opacity: 0.8, dashArray: '8 6' }).addTo(map);
+
+// Terugweg (teal)
+L.polyline([
+  [47.08, 14.39], [47.41, 10.28], [48.0, 8.2], [51.155, 4.475]
+], { color: '#5ce0d6', weight: 3, opacity: 0.8, dashArray: '8 6' }).addTo(map);
+
+// Fit bounds
+map.fitBounds([[47, 4], [51.5, 20]], { padding: [30, 30] });
+
+// Today highlight
+(function() {
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  document.querySelectorAll('.stop-card[data-date]').forEach(card => {
+    const start = new Date(card.dataset.date + 'T00:00:00');
+    const end = new Date(card.dataset.end + 'T00:00:00');
+    if (today >= start && today < end) {
+      card.classList.add('today');
+    }
   });
-
-  map.fitBounds(L.polyline(stops.map(function(s){return s.ll})).getBounds(),{padding:[50,50]});
-
-  var now = new Date();
-  var pad = function(n){return (n<10?'0':'')+n;};
-  var today = now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate());
-  var el = document.querySelector('section.stop[data-date="'+today+'"]');
-  if(el) el.classList.add('today');
 })();
 </script>
 </body>
